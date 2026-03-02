@@ -1,0 +1,51 @@
+project:
+  type: book
+
+book:
+  title: 【生物】信息、科技、和图像分析（2）
+  subtitle: 内容是个人的，因此是片面的
+  author: iAmHealthy
+  date: last-modified
+  favicon: qupath-style.png
+  page-navigation: true
+  cover-image: qupath-style.png
+  page-footer: 
+    center: "Copyright 2026 iAmHealthy"
+    background: dark
+    border: true
+
+  chapters:
+    
+    - index.qmd
+
+    - part: R
+      chapters:
+        - 2026-03-02_新疆生产建设兵团的分布.qmd
+
+    - part: QuPath
+
+    - part: 技术相关
+
+    - part: 科学相关
+
+    - part: 生物图像分析流程
+
+    - part: 其它
+
+        - 给我买杯茶.qmd
+
+bibliography: references.bib
+csl: science.csl
+
+highlight-style: pygments
+
+format:
+  html:
+    theme:
+      light: Sandstone
+      dark: Solar
+    code-copy: true
+    number-depth: 1
+
+
+

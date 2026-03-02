@@ -1,0 +1,121 @@
+---
+title: 新疆生产建设兵团
+subtitle: 新疆生产建设兵团的地理分布
+date: 2026-03-02
+toc-depth: 4
+toc-expand: true
+lang: en
+---
+
+大家可能经常听“新疆生产建设兵团”，但到底分布于新疆的哪些个方位可能不是很清楚。
+
+于是尝试通过R展示之。
+
+## 1. 获得新疆州/市的地图数据
+
+在国家基础地理信息中心承办的天地图（<https://cloudcenter.tianditu.gov.cn/administrativeDivision/>）网站下载`新疆维吾尔自治区_市.geojson`；在mapshaper（<https://mapshaper.org/>）网站将`新疆维吾尔自治区_市.geojson`转为`shapefile格式文件`[@sciessai]。
+
+解压缩后如下：
+
+```
+raw_data/
+├── 新疆维吾尔自治区_市2.dbf
+├── 新疆维吾尔自治区_市2.prj
+├── 新疆维吾尔自治区_市2.shp
+└── 新疆维吾尔自治区_市2.shx
+```
+
+```{r}
+#| message = FALSE
+
+dplyr |> library()
+ggplot2 |> library()
+sf |> library()
+
+xinjiang <- "raw_data/新疆维吾尔自治区_市2.shp" |> 
+    sf::read_sf()
+
+xinjiang |> dplyr::select(name) |> print(n = length(xinjiang$name))
+```
+
+可知新疆共有26个地区/州/市。
+
+## 2. 获得新疆生产建设兵团的列表
+
+参考兵团政务服务网（<https://zwfw.xjbt.gov.cn/index>），可知兵团的师市/自贸区列表：
+
+<center>
+<img src="images/2026-03-02_construction-units.png" style="border: 1px solid gray; width: 100%">
+</center>
+
+对比可知，以下新疆州/市属于新疆生产建设兵团：
+
+“阿拉尔市”、“铁门关市”、“图木舒克市”、“可克达拉市”、“双河市”、“五家渠市”、“胡杨河市”、“石河子市”、“白杨市”、“北屯市”、“新星市”、“昆玉市”。
+
+::: {.callout-note icon="true"}
+其它**师市**（包括第十一师建工师、第十二师、喀什经济开发区兵团分区、兵地融合发展草滩项目区、霍尔果斯经济开发区兵团分区）和**自贸区**比较分散或面积（应该）比较小，因此就不提及和展示了。
+:::
+
+## 3. 新疆生产建设兵团的分布
+
+```{r}
+#| warning: false
+# Set a new column to mark the cities of the construction units
+
+xinjiang_cu <- xinjiang |> 
+    mutate(        
+        label_number = case_when(
+            name == "阿拉尔市" ~ 1,
+            name == "铁门关市" ~ 9,
+            name == "图木舒克市" ~ 10,
+            name == "可克达拉市" ~ 5,
+            name == "双河市" ~ 8,
+            name == "五家渠市" ~ 11,
+            name == "胡杨河市" ~ 4,
+            name == "石河子市" ~ 7,
+            name == "白杨市" ~ 2,
+            name == "北屯市" ~ 3,
+            name == "新星市" ~ 12,
+            name == "昆玉市" ~ 6,
+            TRUE ~ NA
+        )
+    )
+
+xinjiang_cu <- xinjiang_cu |> 
+    mutate(
+        label = ifelse(
+            name %in% c("阿拉尔市", "铁门关市", "图木舒克市", "可克达拉市", "双河市", "五家渠市", "胡杨河市", "石河子市", "白杨市", "北屯市", "新星市", "昆玉市"),
+            paste0(name, "（", label_number, "）"), NA
+        )
+    )
+
+xinjiang_cu |> dplyr::select(name, label, label_number) |> print(n = length(xinjiang_cu$name))
+
+xinjiang_cu |> ggplot() +
+    geom_sf(aes(fill = label)) +
+    geom_sf_text(
+        aes(label = label_number),
+        na.rm = TRUE,
+        nudge_y = 0.5
+    ) +
+    scale_fill_brewer(
+        palette = "Paired",
+        na.value = "#F3F3F3",
+        name = "",
+        na.translate = TRUE,
+        labels = function(x) ifelse(is.na(x), "地方", x)
+    ) +
+    labs(
+        title = "新疆生产建设兵团的分布（截止2025.09）",
+        caption = "第十一师建工师、第十二师、喀什经济开发区兵团分区、\n兵地融合发展草滩项目区、霍尔果斯经济开发区兵团分区）\n和自贸区比较分散或面积（应该）比较小，没有展示。"
+    ) +
+    theme_void()
+
+ggsave("images/2026-03-02_新疆生产建设兵团分布.png", bg = "white")
+```
+
+由图可知，新疆生产建设兵团散在的分布于新疆各地，其中最大的是阿拉尔市（这里有塔里木大学和塔里木理工学院）。
+
+[给我买杯茶🍵](给我买杯茶.qmd)
+
+## References
