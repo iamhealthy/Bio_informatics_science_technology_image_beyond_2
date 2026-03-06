@@ -1,0 +1,62 @@
+---
+title: 切片染色方法
+subtitle: 几个组织切片多重免疫染色的方法
+date: 2026-03-06
+toc-depth: 4
+toc-expand: true
+lang: en
+---
+
+直接展示其原理图，不做过多描述。
+
+## 1. IMC: imaging mass cytometry
+
+> coupled immunohistochemical and immunocytochemical methods with high-resolution laser ablation to CyTOF mass cytometry [@Giesen2014].
+
+<center>
+![](images/2026-03-04_nat-med_2014_imc.jpg){width="100%"}
+</center>
+
+## 2. CODEX: CO-Detection by indEXing
+
+> Multiplexed DNA-tagged antibody staining [@Goltsev2018].
+
+<center>
+![](images/2026-03-04_cell_2018_codex.jpg){width="100%"}
+</center>
+
+## 3. t-CyCIF: tissue-based cyclic immunofluorescence
+
+> conventional low-plex fluorescence images are repeatedly collected from the same sample and then assembled into a high-dimensional representation [@Lin2018].
+
+<center>
+![](images/2026-03-04_elift_2018_t-cycif.jpg){width="100%"}
+</center>
+
+## 4. 4i: iterative indirect immunofluorescence imaging
+
+<center>
+![](images/2026-03-04_science_2018_4i.jpg){width="100%"}
+
+![From [@Gut2018]](images/2026-03-04_science_2018_4i_legend.jpg){width="100%"}
+</center>
+
+## 5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution
+
+> CODA maps whole organs and organisms at single-cell resolution [@Kiemen2022], [@denis-wirtz2026].
+
+<center>
+![](images/2026-03-04_nat-method_2022_coda.jpg){width="100%"}
+</center>
+
+## 6. iCLAP: integrable Co-detection of Low-Abundant Proteins
+
+> enables sensitive and highly multiplexed protein detection within the same FFPE tissue section [@Wu2026].
+
+<center>
+![从panel a亦可知iCLAP-mxIF、CyCIF、IMC、和CODEX的大体检测通道数和敏感性定性比较。](images/2026-03-04_nat-commun_2026_iclap.jpg){width="100%"}
+</center>
+
+[给我买杯茶🍵](给我买杯茶.qmd)
+
+## References

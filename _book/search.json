@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "【生物】信息、科技、和图像分析（2）",
     "section": "",
-    "text": "前言\n看到了，如果有感触，就写点。\n内容可能涉及：\n\nR v4.5.2；\n\ntidyverse v2.0.0;\nsf v1.0.22\n\nQuPath v0.6.0（ImageJ）；\n生物医学相关的科技；\n生物图像处理；\n其它。\n\n📧：15821314790@126.com",
+    "text": "前言\n看到了，如果有感触，就写点。\n内容可能涉及：\n\nR v4.5.2；\n\ntidyverse v2.0.0;\nsf v1.0.22\n\nQuPath v0.7.0（ImageJ）；\n生物医学相关的科技；\n生物图像处理；\n其它。\n\n📧：15821314790@126.com",
     "crumbs": [
       "前言"
     ]
@@ -62,6 +62,94 @@
     "crumbs": [
       "R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>新疆生产建设兵团</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html",
+    "href": "2026-03-04_切片染色方法.html",
+    "title": "2  切片染色方法",
+    "section": "",
+    "text": "1. IMC: imaging mass cytometry\n直接展示其原理图，不做过多描述。",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
+    "href": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
+    "title": "2  切片染色方法",
+    "section": "",
+    "text": "coupled immunohistochemical and immunocytochemical methods with high-resolution laser ablation to CyTOF mass cytometry (1).",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
+    "href": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
+    "title": "2  切片染色方法",
+    "section": "2. CODEX: CO-Detection by indEXing",
+    "text": "2. CODEX: CO-Detection by indEXing\n\nMultiplexed DNA-tagged antibody staining (2).",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
+    "href": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
+    "title": "2  切片染色方法",
+    "section": "3. t-CyCIF: tissue-based cyclic immunofluorescence",
+    "text": "3. t-CyCIF: tissue-based cyclic immunofluorescence\n\nconventional low-plex fluorescence images are repeatedly collected from the same sample and then assembled into a high-dimensional representation (3).",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
+    "href": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
+    "title": "2  切片染色方法",
+    "section": "4. 4i: iterative indirect immunofluorescence imaging",
+    "text": "4. 4i: iterative indirect immunofluorescence imaging\n\n\n\n\n\nFrom (4)",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
+    "href": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
+    "title": "2  切片染色方法",
+    "section": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution",
+    "text": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution\n\nCODA maps whole organs and organisms at single-cell resolution (5), (6).",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
+    "href": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
+    "title": "2  切片染色方法",
+    "section": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins",
+    "text": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins\n\nenables sensitive and highly multiplexed protein detection within the same FFPE tissue section (7).\n\n\n\n\n\n从panel a亦可知iCLAP-mxIF、CyCIF、IMC、和CODEX的大体检测通道数和敏感性定性比较。\n\n\n\n给我买杯茶🍵",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-04_切片染色方法.html#references",
+    "href": "2026-03-04_切片染色方法.html#references",
+    "title": "2  切片染色方法",
+    "section": "References",
+    "text": "References\n\n\n\n\n1. C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry. Nature Methods 11, 417–422 (2014).\n\n\n2. Y. Goltsev, N. Samusik, J. Kennedy-Darling, S. Bhate, M. Hale, G. Vazquez, S. Black, G. P. Nolan, Deep profiling of mouse splenic architecture with CODEX multiplexed imaging. Cell 174, 968–981.e15 (2018).\n\n\n3. J.-R. Lin, B. Izar, S. Wang, C. Yapp, S. Mei, P. M. Shah, S. Santagata, P. K. Sorger, Highly multiplexed immunofluorescence imaging of human tissues and tumors using t-CyCIF and conventional optical microscopes. eLife 7 (2018).\n\n\n4. G. Gut, M. D. Herrmann, L. Pelkmans, Multiplexed protein maps link subcellular organization to cellular states. Science 361 (2018).\n\n\n5. A. L. Kiemen, A. M. Braxton, M. P. Grahn, K. S. Han, J. M. Babu, R. Reichel, A. C. Jiang, B. Kim, J. Hsu, F. Amoa, S. Reddy, S.-M. Hong, T. C. Cornish, E. D. Thompson, P. Huang, L. D. Wood, R. H. Hruban, D. Wirtz, P.-H. Wu, CODA: Quantitative 3D reconstruction of large tissues at cellular resolution. Nature Methods 19, 1490–1499 (2022).\n\n\n6. Denis, Wirtz (2026). https://bsky.app/profile/deniswirtz.bsky.social/post/3mg6kjndbx225.\n\n\n7. F. Wu, S. Zheng, Y. Chen, P. Ye, M. J. Kim, S. Lee, G. Kuo, S. Pillan, R. Yuan, K. S. Han, B. Yu, Q. Zhu, S. M. Shin, C. D. Cannon, G. Pierre, K. Iwasaki, C. Aguayo-Mazzucato, N. Musi, G. A. Kuchel, B. Schilling, L. D. Wood, W. J. Ho, R. A. Anders, D. Wirtz, P.-H. Wu, iCLAP: An innovative method for integrable co-detection of low-abundance antigens with high-plex immunostaining. Nature Communications, doi: 10.1038/s41467-026-69752-y (2026).",
+    "crumbs": [
+      "技术相关",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   }
 ]

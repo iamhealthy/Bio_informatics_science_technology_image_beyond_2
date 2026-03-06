@@ -25,6 +25,10 @@ book:
     - part: QuPath
 
     - part: 技术相关
+      chapters:
+        - 2026-03-04_切片染色方法.qmd
+
+    - part: 图像分析
 
     - part: 科学相关
 
