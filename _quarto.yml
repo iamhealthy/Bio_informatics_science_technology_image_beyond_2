@@ -22,7 +22,11 @@ book:
       chapters:
         - 2026-03-02_新疆生产建设兵团的分布.qmd
 
-    - part: QuPath
+    - part: QuPath      
+
+    - part: R & QuPath
+      chapters:
+        - 2026-03-09_swan.qmd
 
     - part: 技术相关
       chapters:

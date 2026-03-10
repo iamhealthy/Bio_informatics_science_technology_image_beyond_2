@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "【生物】信息、科技、和图像分析（2）",
     "section": "",
-    "text": "前言\n看到了，如果有感触，就写点。\n内容可能涉及：\n\nR v4.5.2；\n\ntidyverse v2.0.0;\nsf v1.0.22\n\nQuPath v0.7.0（ImageJ）；\n生物医学相关的科技；\n生物图像处理；\n其它。\n\n📧：15821314790@126.com",
+    "text": "前言\n看到了，如果有感触，就写点。\n内容可能涉及：\n\nR v4.5.2；\n\ntidyverse v2.0.0;\nsf v1.0.22\nggtext v0.1.2\n\nQuPath v0.7.0（ImageJ）；\n生物医学相关的科技；\n生物图像处理；\n其它。\n\n📧：15821314790@126.com",
     "crumbs": [
       "前言"
     ]
@@ -65,91 +65,146 @@
     ]
   },
   {
+    "objectID": "2026-03-09_swan.html",
+    "href": "2026-03-09_swan.html",
+    "title": "2  天鹅和倒影",
+    "section": "",
+    "text": "1. 在玛纳斯国家湿地公园拍到了天鹅",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>天鹅和倒影</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-09_swan.html#在玛纳斯国家湿地公园拍到了天鹅",
+    "href": "2026-03-09_swan.html#在玛纳斯国家湿地公园拍到了天鹅",
+    "title": "2  天鹅和倒影",
+    "section": "",
+    "text": "天鹅湖（拍摄于2026-02-17）",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>天鹅和倒影</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-09_swan.html#玛纳斯国家湿地公园的位置",
+    "href": "2026-03-09_swan.html#玛纳斯国家湿地公园的位置",
+    "title": "2  天鹅和倒影",
+    "section": "2. 玛纳斯国家湿地公园的位置",
+    "text": "2. 玛纳斯国家湿地公园的位置\n\nsf |&gt; library()\nggplot2 |&gt; library()\nggtext |&gt; library()\n\n# Read the shapefile of Xinjiang\nxinjiang &lt;- \"raw_data/新疆维吾尔自治区_市2.shp\" |&gt; \n    sf::read_sf()\n\n# Set the position of 新疆玛纳斯国家湿地公园\nwetland_park_location &lt;- data.frame(\n    x = 86.10,\n    y = 44.25,\n    z = \"新疆玛纳斯国家湿地公园\"\n)\n\nxinjiang |&gt; ggplot() +\n    geom_sf() +\n    geom_point(\n        data = wetland_park_location,\n        aes(x = x, y = y),\n        color = \"red\",\n        size = 2\n    ) +\n    labs(\n        x = \"经度/longitude\",\n        y = \"纬度/latitude\",\n        caption = \"坐标来源：\\nhttps://www.cj.gov.cn/p1/dfxfg/20170801/190939.html?source=zzb\",\n        title = \"**玛纳斯国家湿地公园**位于&lt;span style='color: red;'&gt;红点&lt;/span&gt;所示位置\"\n    ) +\n    theme_void() +\n    theme(\n        plot.title = ggtext::element_markdown()\n    )\n\n\n\n\n\n\n\n\"images/2026-03-10_wetland-position.png\" |&gt;\n    ggsave(bg = \"white\")",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>天鹅和倒影</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-09_swan.html#给离镜头最近的天鹅来个特写",
+    "href": "2026-03-09_swan.html#给离镜头最近的天鹅来个特写",
+    "title": "2  天鹅和倒影",
+    "section": "3. 给离镜头最近的天鹅来个特写",
+    "text": "3. 给离镜头最近的天鹅来个特写\nQuPath建立project → 添加图片 → 就该天鹅画一个矩形注释框 → 导出该矩形注释框的图片。\n\n\n倒影很有意思\n\n在QuPath → Classify → Pixel classification来选中天鹅和其倒影 → brush修补生成的annotation → 导出天鹅及其倒影。\n\n\n\n下面是groovy code：\n// QuPath v0.7.0\n\n/**\n * This exports the selected annotation and its ROI to ImageJ,\n * clears outside, and saves the output in a folder\n * called swan within your QuPath project.\n */\n\nimport ij.IJ\nimport qupath.lib.regions.RegionRequest\nimport qupath.imagej.tools.IJTools\n\ndef name = getCurrentImageNameWithoutExtension()\n\n// Create output folder\noutputPath = buildFilePath(PROJECT_BASE_DIR, \"swan\")\nmkdirs(outputPath)\n\ndef imageData = getCurrentImageData()\ndef server = imageData.getServer()\n\ndef downsample = 1 // if the image is large, it could be enlarged\ndef anno = getSelectedObject()\ndef roi = anno.getROI()\n\n// Request the region\ndef request = RegionRequest.createInstance(server.getPath(), downsample, roi)\n\n// Extract the region as an ImageJ ImagePlus\ndef imp = IJTools.convertToImagePlus(server, request).getImage()\n\n// Convert the QuPath ROI into an ImageJ\ndef ijRoi = IJTools.convertToIJRoi(roi, request)\nimp.setRoi(ijRoi)\nIJ.setBackgroundColor(255, 255, 255)\nIJ.run(imp, \"Clear Outside\", \"\")\n\ndef nameExportSwan = name + \"_swan\" + \".png\"\n\n// Export the image with IJ\npathExport = buildFilePath(outputPath, nameExportSwan)\nIJ.saveAs(imp, \"png\", pathExport)\n\nprintln \"Done! Image saved at: \" + outputPath\nGroovy代码参考自(1)并做小部分修改。\n给我买杯茶🍵",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>天鹅和倒影</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-09_swan.html#references",
+    "href": "2026-03-09_swan.html#references",
+    "title": "2  天鹅和倒影",
+    "section": "References",
+    "text": "References\n\n\n\n\n1. Isaac, Vieco-Martí, Issue exporting rotated rectangle ROI in QuPath - export includes bounding box instead of rotated shape (2025). https://forum.image.sc/t/issue-exporting-rotated-rectangle-roi-in-qupath-export-includes-bounding-box-instead-of-rotated-shape/117195/3.",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>天鹅和倒影</span>"
+    ]
+  },
+  {
     "objectID": "2026-03-04_切片染色方法.html",
     "href": "2026-03-04_切片染色方法.html",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "",
     "text": "1. IMC: imaging mass cytometry\n直接展示其原理图，不做过多描述。",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
     "href": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "",
     "text": "coupled immunohistochemical and immunocytochemical methods with high-resolution laser ablation to CyTOF mass cytometry (1).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
     "href": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "2. CODEX: CO-Detection by indEXing",
     "text": "2. CODEX: CO-Detection by indEXing\n\nMultiplexed DNA-tagged antibody staining (2).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
     "href": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "3. t-CyCIF: tissue-based cyclic immunofluorescence",
     "text": "3. t-CyCIF: tissue-based cyclic immunofluorescence\n\nconventional low-plex fluorescence images are repeatedly collected from the same sample and then assembled into a high-dimensional representation (3).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
     "href": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "4. 4i: iterative indirect immunofluorescence imaging",
     "text": "4. 4i: iterative indirect immunofluorescence imaging\n\n\n\n\n\nFrom (4)",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
     "href": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution",
     "text": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution\n\nCODA maps whole organs and organisms at single-cell resolution (5), (6).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
     "href": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins",
     "text": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins\n\nenables sensitive and highly multiplexed protein detection within the same FFPE tissue section (7).\n\n\n\n\n\n从panel a亦可知iCLAP-mxIF、CyCIF、IMC、和CODEX的大体检测通道数和敏感性定性比较。\n\n\n\n给我买杯茶🍵",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#references",
     "href": "2026-03-04_切片染色方法.html#references",
-    "title": "2  切片染色方法",
+    "title": "3  切片染色方法",
     "section": "References",
     "text": "References\n\n\n\n\n1. C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry. Nature Methods 11, 417–422 (2014).\n\n\n2. Y. Goltsev, N. Samusik, J. Kennedy-Darling, S. Bhate, M. Hale, G. Vazquez, S. Black, G. P. Nolan, Deep profiling of mouse splenic architecture with CODEX multiplexed imaging. Cell 174, 968–981.e15 (2018).\n\n\n3. J.-R. Lin, B. Izar, S. Wang, C. Yapp, S. Mei, P. M. Shah, S. Santagata, P. K. Sorger, Highly multiplexed immunofluorescence imaging of human tissues and tumors using t-CyCIF and conventional optical microscopes. eLife 7 (2018).\n\n\n4. G. Gut, M. D. Herrmann, L. Pelkmans, Multiplexed protein maps link subcellular organization to cellular states. Science 361 (2018).\n\n\n5. A. L. Kiemen, A. M. Braxton, M. P. Grahn, K. S. Han, J. M. Babu, R. Reichel, A. C. Jiang, B. Kim, J. Hsu, F. Amoa, S. Reddy, S.-M. Hong, T. C. Cornish, E. D. Thompson, P. Huang, L. D. Wood, R. H. Hruban, D. Wirtz, P.-H. Wu, CODA: Quantitative 3D reconstruction of large tissues at cellular resolution. Nature Methods 19, 1490–1499 (2022).\n\n\n6. Denis, Wirtz (2026). https://bsky.app/profile/deniswirtz.bsky.social/post/3mg6kjndbx225.\n\n\n7. F. Wu, S. Zheng, Y. Chen, P. Ye, M. J. Kim, S. Lee, G. Kuo, S. Pillan, R. Yuan, K. S. Han, B. Yu, Q. Zhu, S. M. Shin, C. D. Cannon, G. Pierre, K. Iwasaki, C. Aguayo-Mazzucato, N. Musi, G. A. Kuchel, B. Schilling, L. D. Wood, W. J. Ho, R. A. Anders, D. Wirtz, P.-H. Wu, iCLAP: An innovative method for integrable co-detection of low-abundance antigens with high-plex immunostaining. Nature Communications, doi: 10.1038/s41467-026-69752-y (2026).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   }
 ]
