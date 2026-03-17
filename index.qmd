@@ -8,6 +8,9 @@
     - tidyverse v2.0.0;
     - sf v1.0.22
     - ggtext v0.1.2
+    - tidyplots v0.4.0
+    - magick v2.9.0
+    - grid v4.5.2
 - **QuPath** v0.7.0（ImageJ）；
 - **生物医学相关的科技**；
 - **生物图像处理**；
