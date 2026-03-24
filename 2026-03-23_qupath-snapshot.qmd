@@ -1,0 +1,114 @@
+---
+title: 导出QuPath快照
+subtitle: 导出QuPath快照（snapshot）的五种方法
+date: 2026-03-23
+toc-depth: 4
+toc-expand: true
+lang: en
+---
+
+## 1，通过QuPath菜单
+
+`File` &rarr; `Export snapshot...`
+
+<center>
+::: {.columns}
+::: {.column width="37%"}
+![&rarr; `Main window screenshot...`](images/2026-03-19_main_window_screenshot.png){style="width: 98%;"}
+:::
+::: {.column width="37%"}
+![&rarr; `Main window content...`](images/2026-03-19_main_window_content.png){style="width: 98%;"}
+:::
+::: {.column width="26%"}
+![&rarr; `Current viewer content...`](images/2026-03-19_current_viewer_content.png){style="width: 95%;"}
+:::
+:::
+</center>
+
+## 2，通过Extensions
+
+`Extensions` &rarr; `Snapshot helper`
+
+<center>
+::: {.columns}
+::: {.column width="50%"}
+![&rarr; `Save snapshot`](images/2026-03-19_save_snapshot.png){style="width: 99%;"}
+:::
+::: {.column width="50%"}
+![&rarr; `Save screenshot`](images/2026-03-19_save_screenshot.png){style="width: 95%;"}
+:::
+:::
+</center>
+
+## 3，通过groovy script
+
+<center>
+::: {.columns}
+::: {.column width="37%"}
+![Full screenshot](images/2026-03-19_script_-fullscreenshot.png){style="width: 98%;"}
+:::
+::: {.column width="37%"}
+![Snapshot](images/2026-03-19_script_-snapshot.png){style="width: 98%;"}
+:::
+::: {.column width="26%"}
+![Viewer snapshot](images/2026-03-19_script_viewer-snapshot.png){style="width: 95%;"}
+:::
+:::
+</center>
+
+```
+// QuPath v0.7.0
+
+import qupath.lib.gui.tools.GuiTools
+
+// Set directory
+var path = buildFilePath(PROJECT_BASE_DIR, "images")
+mkdirs(path)
+
+// Export full screenshot
+var name2 = "full-screenshot.png"
+writeImage(
+        GuiTools.makeFullScreenshot(),
+        buildFilePath(path, name2)
+)
+
+// Export snapshot (main window content)
+var name3 = "snapshot.png"
+writeImage(
+        GuiTools.makeSnapshot(),
+        buildFilePath(path, name3)
+)
+
+// Export viewer snapshot
+var name1 = "viewer-snapshot.png"
+writeImage(
+        GuiTools.makeViewerSnapshot(),
+        buildFilePath(path, name1)
+)
+
+println "Done!"
+```
+
+## 4，&#8862; + `shift` + `S`唤起Windows自带的`Snipping Tool`
+
+通过`Snipping Tool`截取（QuPath）任意窗口区域。
+
+<center>
+![](images/2026-03-21_snippint-tool.png){style="width: 50%;"}
+</center>
+
+## 5，`alt` + `space`唤起`uTools` 
+
+需要提前安装uTools。
+
+唤起`uTools`后，在输入框输入`jietu`。三种工具都可以试试。
+
+<center>
+![uTools提供的3种截图工具。](images/2026-03-21_utools_snapshot.png)
+</center>
+
+::: {.callout-note icon="true"}
+方法1 - 3为QuPath特异的方法；方法4和5为泛泛的方法。
+:::
+
+[给我买杯茶🍵](给我买杯茶.qmd)

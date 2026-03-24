@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "【生物】信息、科技、和图像分析（2）",
     "section": "",
-    "text": "前言\n看到了，如果有感触，就写点。\n内容可能涉及：\n\nR v4.5.2；\n\ntidyverse v2.0.0;\nsf v1.0.22\nggtext v0.1.2\ntidyplots v0.4.0\nmagick v2.9.0\ngrid v4.5.2\n\nQuPath v0.7.0（ImageJ）；\n生物医学相关的科技；\n生物图像处理；\n其它。\n\n📧：15821314790@126.com",
+    "text": "前言\n看到了，如果有感触，就写点。\n内容可能涉及：\n\nR v4.5.2；\n\ntidyverse v2.0.0;\nsf v1.1.0\nggtext v0.1.2\ntidyplots v0.4.0\nmagick v2.9.1\ngrid v4.5.2\n\nQuPath v0.7.0（ImageJ）；\n生物医学相关的科技；\n生物图像处理；\n其它。\n\n📧：15821314790@126.com",
     "crumbs": [
       "前言"
     ]
@@ -14,7 +14,7 @@
     "href": "2026-03-02_新疆生产建设兵团的分布.html",
     "title": "1  新疆生产建设兵团",
     "section": "",
-    "text": "1. 获得新疆州/市的地图数据\n大家可能经常听“新疆生产建设兵团”，但到底分布于新疆的哪些个方位可能不是很清楚。\n于是尝试通过R展示之。\n在国家基础地理信息中心承办的天地图（https://cloudcenter.tianditu.gov.cn/administrativeDivision/）网站下载新疆维吾尔自治区_市.geojson；在mapshaper（https://mapshaper.org/）网站将新疆维吾尔自治区_市.geojson转为shapefile格式文件(1)。\n解压缩后如下：\ndplyr |&gt; library()\nggplot2 |&gt; library()\nsf |&gt; library()\n\nxinjiang &lt;- \"raw_data/新疆维吾尔自治区_市2.shp\" |&gt; \n    sf::read_sf()\n\nxinjiang |&gt; dplyr::select(name) |&gt; print(n = length(xinjiang$name))\n\nSimple feature collection with 26 features and 1 field\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 73.49896 ymin: 34.33627 xmax: 96.3869 ymax: 49.18141\nGeodetic CRS:  WGS 84\n# A tibble: 26 × 2\n   name                                                                 geometry\n   &lt;chr&gt;                                                      &lt;MULTIPOLYGON [°]&gt;\n 1 和田地区               (((77.81405 35.51947, 77.81957 35.52585, 77.81736 35.…\n 2 昆玉市                 (((81.2725 36.14222, 81.27222 36.14278, 81.27278 36.1…\n 3 可克达拉市             (((80.61483 43.68371, 80.52383 43.80992, 80.51984 43.…\n 4 图木舒克市             (((76.06117 39.24069, 76.01762 39.24795, 76.00367 39.…\n 5 阿拉尔市               (((81.88133 40.94038, 81.85784 40.91455, 81.84049 40.…\n 6 石河子市               (((86.12064 44.44968, 86.11172 44.43074, 86.11807 44.…\n 7 双河市                 (((82.38297 44.67607, 82.39094 44.66853, 82.38707 44.…\n 8 铁门关市               (((84.36889 37.81056, 84.2475 37.75944, 84.23695 37.7…\n 9 克孜勒苏柯尔克孜自治州 (((78.39659 41.40801, 78.40371 41.38904, 78.42229 41.…\n10 北屯市                 (((87.78211 47.38357, 87.80949 47.35793, 87.85193 47.…\n11 喀什地区               (((79.76215 39.62252, 79.61441 38.92572, 79.61611 38.…\n12 五家渠市               (((87.58833 44.53252, 87.59876 44.50172, 87.59331 44.…\n13 阿勒泰地区             (((90.66958 45.48681, 90.49255 45.41895, 90.47859 45.…\n14 昌吉回族自治州         (((87.33309 45.33377, 87.33306 45.00043, 87.55232 44.…\n15 博尔塔拉蒙古自治州     (((82.60487 44.79871, 82.62983 44.80797, 82.63941 44.…\n16 巴音郭楞蒙古自治州     (((85.59444 43.52774, 85.58399 43.52033, 85.60266 43.…\n17 阿克苏地区             (((83.41169 39.48266, 82.51354 39.48385, 82.17666 39.…\n18 胡杨河市               (((85.00773 44.75433, 85.04377 44.73915, 85.05194 44.…\n19 哈密市                 (((93.80834 40.87837, 93.78814 40.8817, 93.73745 40.8…\n20 吐鲁番市               (((91.16744 43.4935, 91.1772 43.48497, 91.17046 43.47…\n21 白杨市                 (((82.78747 46.68111, 82.82672 46.77198, 82.87552 46.…\n22 新星市                 (((95.31579 41.96067, 95.31239 41.97201, 95.30174 41.…\n23 克拉玛依市             (((84.7835 44.38974, 84.97231 44.38363, 85.11015 44.3…\n24 乌鲁木齐市             (((88.93383 43.63153, 88.93199 43.62003, 88.95446 43.…\n25 伊犁哈萨克自治州       (((85.01886 44.65169, 85.01534 44.61779, 85.20006 44.…\n26 塔城地区               (((85.53738 47.05652, 85.54089 47.05137, 85.56587 47.…\n可知新疆共有26个地区/州/市。",
+    "text": "1. 获得新疆州/市的地图数据\n大家可能经常听“新疆生产建设兵团”，但到底分布于新疆的哪些个方位可能不是很清楚。\n于是尝试通过R展示之。\n在国家基础地理信息中心承办的天地图（https://cloudcenter.tianditu.gov.cn/administrativeDivision/）网站下载新疆维吾尔自治区_市.geojson；在mapshaper（https://mapshaper.org/）网站将新疆维吾尔自治区_市.geojson转为shapefile格式文件(1)。\n解压缩后如下：\ndplyr |&gt; library()\nggplot2 |&gt; library()\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\nsf |&gt; library()\n\nWarning: package 'sf' was built under R version 4.5.3\n\nxinjiang &lt;- \"raw_data/新疆维吾尔自治区_市2.shp\" |&gt; \n    sf::read_sf()\n\nxinjiang |&gt; dplyr::select(name) |&gt; print(n = length(xinjiang$name))\n\nSimple feature collection with 26 features and 1 field\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: 73.49896 ymin: 34.33627 xmax: 96.3869 ymax: 49.18141\nGeodetic CRS:  WGS 84\n# A tibble: 26 × 2\n   name                                                                 geometry\n   &lt;chr&gt;                                                      &lt;MULTIPOLYGON [°]&gt;\n 1 和田地区               (((77.81405 35.51947, 77.81957 35.52585, 77.81736 35.…\n 2 昆玉市                 (((81.2725 36.14222, 81.27222 36.14278, 81.27278 36.1…\n 3 可克达拉市             (((80.61483 43.68371, 80.52383 43.80992, 80.51984 43.…\n 4 图木舒克市             (((76.06117 39.24069, 76.01762 39.24795, 76.00367 39.…\n 5 阿拉尔市               (((81.88133 40.94038, 81.85784 40.91455, 81.84049 40.…\n 6 石河子市               (((86.12064 44.44968, 86.11172 44.43074, 86.11807 44.…\n 7 双河市                 (((82.38297 44.67607, 82.39094 44.66853, 82.38707 44.…\n 8 铁门关市               (((84.36889 37.81056, 84.2475 37.75944, 84.23695 37.7…\n 9 克孜勒苏柯尔克孜自治州 (((78.39659 41.40801, 78.40371 41.38904, 78.42229 41.…\n10 北屯市                 (((87.78211 47.38357, 87.80949 47.35793, 87.85193 47.…\n11 喀什地区               (((79.76215 39.62252, 79.61441 38.92572, 79.61611 38.…\n12 五家渠市               (((87.58833 44.53252, 87.59876 44.50172, 87.59331 44.…\n13 阿勒泰地区             (((90.66958 45.48681, 90.49255 45.41895, 90.47859 45.…\n14 昌吉回族自治州         (((87.33309 45.33377, 87.33306 45.00043, 87.55232 44.…\n15 博尔塔拉蒙古自治州     (((82.60487 44.79871, 82.62983 44.80797, 82.63941 44.…\n16 巴音郭楞蒙古自治州     (((85.59444 43.52774, 85.58399 43.52033, 85.60266 43.…\n17 阿克苏地区             (((83.41169 39.48266, 82.51354 39.48385, 82.17666 39.…\n18 胡杨河市               (((85.00773 44.75433, 85.04377 44.73915, 85.05194 44.…\n19 哈密市                 (((93.80834 40.87837, 93.78814 40.8817, 93.73745 40.8…\n20 吐鲁番市               (((91.16744 43.4935, 91.1772 43.48497, 91.17046 43.47…\n21 白杨市                 (((82.78747 46.68111, 82.82672 46.77198, 82.87552 46.…\n22 新星市                 (((95.31579 41.96067, 95.31239 41.97201, 95.30174 41.…\n23 克拉玛依市             (((84.7835 44.38974, 84.97231 44.38363, 85.11015 44.3…\n24 乌鲁木齐市             (((88.93383 43.63153, 88.93199 43.62003, 88.95446 43.…\n25 伊犁哈萨克自治州       (((85.01886 44.65169, 85.01534 44.61779, 85.20006 44.…\n26 塔城地区               (((85.53738 47.05652, 85.54089 47.05137, 85.56587 47.…\n可知新疆共有26个地区/州/市。",
     "crumbs": [
       "R",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>新疆生产建设兵团</span>"
@@ -91,7 +91,7 @@
     "href": "2026-03-09_swan.html#玛纳斯国家湿地公园的位置",
     "title": "2  天鹅和倒影",
     "section": "2. 玛纳斯国家湿地公园的位置",
-    "text": "2. 玛纳斯国家湿地公园的位置\n\nsf |&gt; library()\nggplot2 |&gt; library()\nggtext |&gt; library()\n\n# Read the shapefile of Xinjiang\nxinjiang &lt;- \"raw_data/新疆维吾尔自治区_市2.shp\" |&gt; \n    sf::read_sf()\n\n# Set the position of 新疆玛纳斯国家湿地公园\nwetland_park_location &lt;- data.frame(\n    x = 86.10,\n    y = 44.25,\n    z = \"新疆玛纳斯国家湿地公园\"\n)\n\nxinjiang |&gt; ggplot() +\n    geom_sf() +\n    geom_point(\n        data = wetland_park_location,\n        aes(x = x, y = y),\n        color = \"red\",\n        size = 2\n    ) +\n    labs(\n        x = \"经度/longitude\",\n        y = \"纬度/latitude\",\n        caption = \"坐标来源：\\nhttps://www.cj.gov.cn/p1/dfxfg/20170801/190939.html?source=zzb\",\n        title = \"**玛纳斯国家湿地公园**位于&lt;span style='color: red;'&gt;红点&lt;/span&gt;所示位置\"\n    ) +\n    theme_void() +\n    theme(\n        plot.title = ggtext::element_markdown()\n    )\n\n\n\n\n\n\n\n\"images/2026-03-10_wetland-position.png\" |&gt;\n    ggsave(bg = \"white\")",
+    "text": "2. 玛纳斯国家湿地公园的位置\n\nsf |&gt; library()\n\nWarning: package 'sf' was built under R version 4.5.3\n\nggplot2 |&gt; library()\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\nggtext |&gt; library()\n\nWarning: package 'ggtext' was built under R version 4.5.3\n\n# Read the shapefile of Xinjiang\nxinjiang &lt;- \"raw_data/新疆维吾尔自治区_市2.shp\" |&gt; \n    sf::read_sf()\n\n# Set the position of 新疆玛纳斯国家湿地公园\nwetland_park_location &lt;- data.frame(\n    x = 86.10,\n    y = 44.25,\n    z = \"新疆玛纳斯国家湿地公园\"\n)\n\nxinjiang |&gt; ggplot() +\n    geom_sf() +\n    geom_point(\n        data = wetland_park_location,\n        aes(x = x, y = y),\n        color = \"red\",\n        size = 2\n    ) +\n    labs(\n        x = \"经度/longitude\",\n        y = \"纬度/latitude\",\n        caption = \"坐标来源：\\nhttps://www.cj.gov.cn/p1/dfxfg/20170801/190939.html?source=zzb\",\n        title = \"**玛纳斯国家湿地公园**位于&lt;span style='color: red;'&gt;红点&lt;/span&gt;所示位置\"\n    ) +\n    theme_void() +\n    theme(\n        plot.title = ggtext::element_markdown()\n    )\n\n\n\n\n\n\n\n\"images/2026-03-10_wetland-position.png\" |&gt;\n    ggsave(bg = \"white\")",
     "crumbs": [
       "R & QuPath",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>天鹅和倒影</span>"
@@ -124,98 +124,164 @@
     "href": "2026-03-14_qupath-release-history-and-size.html",
     "title": "3  QuPath-History-Size",
     "section": "",
-    "text": "除过v0.0.1-beta（属于Pre-release），其它的pre-release版本不统计。\n\ntidyplots |&gt; library() # for plotting\nggplot2 |&gt; library() # for plotting\nmagick |&gt; library() # for reading image\ngrid |&gt; library() # for changing image to graphic object\n\n# Collect relevant data from https://github.com/qupath\nqupath_history &lt;- data.frame(\n    Version = c(\n        \"v0.0.1-beta\", \"v0.1.0\", \"v0.1.1\", \"v0.1.2\", \"v0.2.0\", \"v0.2.1\", \"v0.2.2\", \"v0.2.3\", \"v0.3.0\", \"v0.3.1\", \"v0.3.2\", \"v0.4.0\", \"v0.4.1\", \"v0.4.2\", \"v0.4.3\", \"v0.4.4\", \"v0.5.0\", \"v0.5.1\", \"v0.6.0\", \"v0.7.0\"\n    ),\n    Release_date = as.Date(\n        c(\n            \"2016-10-05\", \"2016-12-05\", \"2016-12-08\", \"2017-01-01\", \"2020-06-01\", \"2020-06-23\", \"2020-07-28\", \"2020-09-11\", \"2021-09-03\", \"2021-12-24\", \"2022-01-17\", \"2022-12-03\", \"2022-12-21\", \"2023-01-20\", \"2023-02-23\", \"2023-09-02\", \"2023-12-02\", \"2024-03-04\", \"2025-06-27\", \"2026-03-02\"\n        )\n    ),\n    Installer_size = c(\n        73, 80.3, 80.3, 80.4, 199, 200, 199, 199, 205, 205, 207, 224, 224, 224, 224, 224, 234, 234, 267, 271\n    )\n)\n\n# Read the image of qupath\nqupath &lt;- \"images/qupath.png\" |&gt; \n    magick::image_read()\n\nqupath_grob &lt;- qupath |&gt; \n    grid::rasterGrob() # Change to graphic object\n\nqupath_history |&gt; tidyplot(x = Release_date, y = Installer_size, color = Installer_size) |&gt; \n    add(ggplot2::geom_line()) |&gt;\n    add_data_points(size = 2, white_border = TRUE, shape = 18) |&gt; \n    add_data_labels_repel(label = Version, fontsize = 12) |&gt;\n    add_title(\"The release history and Windows installer size of QuPath\") |&gt; \n    add_caption(paste(\"Source: https://github.com/qupath (as of 2026-03-17).\", \"Exe size for v0.x.x; msi size for v0.2.x and beyond.\", sep = \"\\n\")) |&gt; \n    adjust_size(width = 150, height = 75, unit = \"mm\") |&gt; \n    adjust_font(fontsize = 10) |&gt; \n    adjust_y_axis(limits = c(50, 300), breaks = seq(50, 300, 50)) |&gt;\n    adjust_x_axis(breaks = \"1 year\", ) |&gt;\n    add(ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) |&gt; \n    add(ggplot2::annotation_custom(qupath_grob, xmin = as.Date(\"2023-07-01\"), xmax = as.Date(\"2026-01-01\"), ymin = 60, ymax = 200)) |&gt; \n    adjust_x_axis_title(title = \"Release date\", fontsize = 14) |&gt; \n    adjust_y_axis_title(title = \"Installer size (Mb)\", fontsize = 14) |&gt;\n    adjust_colors(new_colors = colors_discrete_friendly) |&gt; \n    adjust_title(fontsize = 18, vjust = 3) |&gt; \n    adjust_caption(fontsize = 9) |&gt; \n    adjust_theme_details(plot.background = ggplot2::element_rect(fill = \"#f4f7d9\"), panel.background = ggplot2::element_rect(fill = \"#f4f7d9\")) |&gt;\n    adjust_legend_position(position = \"none\") |&gt; \n    save_plot(\"images/2026-03-14_qupath-release-history-and-size.png\", view_plot = FALSE)    \n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nv0.x.x统计的是.exe格式文件的大小；v0.2.x及之后版本统计的是.msi格式文件的大小。\n\n\n给我买杯茶🍵",
+    "text": "除过v0.0.1-beta（属于Pre-release），其它的pre-release版本不统计。\n\ntidyplots |&gt; library() # for plotting\n\nWarning: package 'tidyplots' was built under R version 4.5.3\n\nggplot2 |&gt; library() # for plotting\n\nWarning: package 'ggplot2' was built under R version 4.5.3\n\nmagick |&gt; library() # for reading image\n\nWarning: package 'magick' was built under R version 4.5.3\n\ngrid |&gt; library() # for changing image to graphic object\n\n# Collect relevant data from https://github.com/qupath\nqupath_history &lt;- data.frame(\n    Version = c(\n        \"v0.0.1-beta\", \"v0.1.0\", \"v0.1.1\", \"v0.1.2\", \"v0.2.0\", \"v0.2.1\", \"v0.2.2\", \"v0.2.3\", \"v0.3.0\", \"v0.3.1\", \"v0.3.2\", \"v0.4.0\", \"v0.4.1\", \"v0.4.2\", \"v0.4.3\", \"v0.4.4\", \"v0.5.0\", \"v0.5.1\", \"v0.6.0\", \"v0.7.0\"\n    ),\n    Release_date = as.Date(\n        c(\n            \"2016-10-05\", \"2016-12-05\", \"2016-12-08\", \"2017-01-01\", \"2020-06-01\", \"2020-06-23\", \"2020-07-28\", \"2020-09-11\", \"2021-09-03\", \"2021-12-24\", \"2022-01-17\", \"2022-12-03\", \"2022-12-21\", \"2023-01-20\", \"2023-02-23\", \"2023-09-02\", \"2023-12-02\", \"2024-03-04\", \"2025-06-27\", \"2026-03-02\"\n        )\n    ),\n    Installer_size = c(\n        73, 80.3, 80.3, 80.4, 199, 200, 199, 199, 205, 205, 207, 224, 224, 224, 224, 224, 234, 234, 267, 271\n    )\n)\n\n# Read the image of qupath\nqupath &lt;- \"images/qupath.png\" |&gt; \n    magick::image_read()\n\nqupath_grob &lt;- qupath |&gt; \n    grid::rasterGrob() # Change to graphic object\n\nqupath_history |&gt; tidyplot(x = Release_date, y = Installer_size, color = Installer_size) |&gt; \n    add(ggplot2::geom_line(size = 0.6)) |&gt;\n    add_data_points(size = 2, white_border = TRUE, shape = 18) |&gt; \n    add_data_labels_repel(label = Version, fontsize = 12, min.segment.length = 0) |&gt;\n    add_title(\"The release history and Windows installer size of QuPath\") |&gt; \n    add_caption(paste(\"Source: https://github.com/qupath (as of 2026-03-17).\", \"Exe size for v0.x.x; msi size for v0.2.x and beyond.\", sep = \"\\n\")) |&gt; \n    adjust_size(width = 150, height = 75, unit = \"mm\") |&gt; \n    adjust_font(fontsize = 10) |&gt; \n    adjust_y_axis(limits = c(50, 300), breaks = seq(50, 300, 50)) |&gt;\n    adjust_x_axis(breaks = \"1 year\", ) |&gt;\n    add(ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) |&gt; \n    add(ggplot2::annotation_custom(qupath_grob, xmin = as.Date(\"2023-07-01\"), xmax = as.Date(\"2026-01-01\"), ymin = 60, ymax = 200)) |&gt; \n    adjust_x_axis_title(title = \"Release date\", fontsize = 14) |&gt; \n    adjust_y_axis_title(title = \"Installer size (Mb)\", fontsize = 14) |&gt;\n    adjust_colors(new_colors = colors_discrete_friendly) |&gt; \n    adjust_title(fontsize = 18, vjust = 3) |&gt; \n    adjust_caption(fontsize = 9) |&gt; \n    adjust_theme_details(plot.background = ggplot2::element_rect(fill = \"#f4f7d9\"), panel.background = ggplot2::element_rect(fill = \"#f4f7d9\")) |&gt;\n    adjust_legend_position(position = \"none\") |&gt; \n    save_plot(\"images/2026-03-14_qupath-release-history-and-size.png\", view_plot = FALSE)    \n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nv0.x.x统计的是.exe格式文件的大小；v0.2.x及之后版本统计的是.msi格式文件的大小。\n\n\n给我买杯茶🍵",
     "crumbs": [
       "R & QuPath",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>QuPath-History-Size</span>"
     ]
   },
   {
+    "objectID": "2026-03-23_qupath-snapshot.html",
+    "href": "2026-03-23_qupath-snapshot.html",
+    "title": "4  导出QuPath快照",
+    "section": "",
+    "text": "1，通过QuPath菜单\nFile → Export snapshot...",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>导出QuPath快照</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-23_qupath-snapshot.html#通过qupath菜单",
+    "href": "2026-03-23_qupath-snapshot.html#通过qupath菜单",
+    "title": "4  导出QuPath快照",
+    "section": "",
+    "text": "→ Main window screenshot...\n\n\n\n\n\n\n→ Main window content...\n\n\n\n\n\n\n→ Current viewer content...",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>导出QuPath快照</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-23_qupath-snapshot.html#通过extensions",
+    "href": "2026-03-23_qupath-snapshot.html#通过extensions",
+    "title": "4  导出QuPath快照",
+    "section": "2，通过Extensions",
+    "text": "2，通过Extensions\nExtensions → Snapshot helper\n\n\n\n\n\n\n→ Save snapshot\n\n\n\n\n\n\n→ Save screenshot",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>导出QuPath快照</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-23_qupath-snapshot.html#通过groovy-script",
+    "href": "2026-03-23_qupath-snapshot.html#通过groovy-script",
+    "title": "4  导出QuPath快照",
+    "section": "3，通过groovy script",
+    "text": "3，通过groovy script\n\n\n\n\n\n\nFull screenshot\n\n\n\n\n\n\nSnapshot\n\n\n\n\n\n\nViewer snapshot\n\n\n\n\n\n// QuPath v0.7.0\n\nimport qupath.lib.gui.tools.GuiTools\n\n// Set directory\nvar path = buildFilePath(PROJECT_BASE_DIR, \"images\")\nmkdirs(path)\n\n// Export full screenshot\nvar name2 = \"full-screenshot.png\"\nwriteImage(\n        GuiTools.makeFullScreenshot(),\n        buildFilePath(path, name2)\n)\n\n// Export snapshot (main window content)\nvar name3 = \"snapshot.png\"\nwriteImage(\n        GuiTools.makeSnapshot(),\n        buildFilePath(path, name3)\n)\n\n// Export viewer snapshot\nvar name1 = \"viewer-snapshot.png\"\nwriteImage(\n        GuiTools.makeViewerSnapshot(),\n        buildFilePath(path, name1)\n)\n\nprintln \"Done!\"",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>导出QuPath快照</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-23_qupath-snapshot.html#shift-s唤起windows自带的snipping-tool",
+    "href": "2026-03-23_qupath-snapshot.html#shift-s唤起windows自带的snipping-tool",
+    "title": "4  导出QuPath快照",
+    "section": "4，⊞ + shift + S唤起Windows自带的Snipping Tool",
+    "text": "4，⊞ + shift + S唤起Windows自带的Snipping Tool\n通过Snipping Tool截取（QuPath）任意窗口区域。",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>导出QuPath快照</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-23_qupath-snapshot.html#alt-space唤起utools",
+    "href": "2026-03-23_qupath-snapshot.html#alt-space唤起utools",
+    "title": "4  导出QuPath快照",
+    "section": "5，alt + space唤起uTools",
+    "text": "5，alt + space唤起uTools\n需要提前安装uTools。\n唤起uTools后，在输入框输入jietu。三种工具都可以试试。\n\n\n\n\nuTools提供的3种截图工具。\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n方法1 - 3为QuPath特异的方法；方法4和5为泛泛的方法。\n\n\n给我买杯茶🍵",
+    "crumbs": [
+      "R & QuPath",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>导出QuPath快照</span>"
+    ]
+  },
+  {
     "objectID": "2026-03-04_切片染色方法.html",
     "href": "2026-03-04_切片染色方法.html",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "",
     "text": "1. IMC: imaging mass cytometry\n直接展示其原理图，不做过多描述。",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
     "href": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "",
     "text": "coupled immunohistochemical and immunocytochemical methods with high-resolution laser ablation to CyTOF mass cytometry (1).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
     "href": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "2. CODEX: CO-Detection by indEXing",
     "text": "2. CODEX: CO-Detection by indEXing\n\nMultiplexed DNA-tagged antibody staining (2).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
     "href": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "3. t-CyCIF: tissue-based cyclic immunofluorescence",
     "text": "3. t-CyCIF: tissue-based cyclic immunofluorescence\n\nconventional low-plex fluorescence images are repeatedly collected from the same sample and then assembled into a high-dimensional representation (3).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
     "href": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "4. 4i: iterative indirect immunofluorescence imaging",
     "text": "4. 4i: iterative indirect immunofluorescence imaging\n\n\n\n\n\nFrom (4)",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
     "href": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution",
     "text": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution\n\nCODA maps whole organs and organisms at single-cell resolution (5), (6).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
     "href": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins",
     "text": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins\n\nenables sensitive and highly multiplexed protein detection within the same FFPE tissue section (7).\n\n\n\n\n\n从panel a亦可知iCLAP-mxIF、CyCIF、IMC、和CODEX的大体检测通道数和敏感性定性比较。\n\n\n\n给我买杯茶🍵",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#references",
     "href": "2026-03-04_切片染色方法.html#references",
-    "title": "4  切片染色方法",
+    "title": "5  切片染色方法",
     "section": "References",
     "text": "References\n\n\n\n\n1. C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry. Nature Methods 11, 417–422 (2014).\n\n\n2. Y. Goltsev, N. Samusik, J. Kennedy-Darling, S. Bhate, M. Hale, G. Vazquez, S. Black, G. P. Nolan, Deep profiling of mouse splenic architecture with CODEX multiplexed imaging. Cell 174, 968–981.e15 (2018).\n\n\n3. J.-R. Lin, B. Izar, S. Wang, C. Yapp, S. Mei, P. M. Shah, S. Santagata, P. K. Sorger, Highly multiplexed immunofluorescence imaging of human tissues and tumors using t-CyCIF and conventional optical microscopes. eLife 7 (2018).\n\n\n4. G. Gut, M. D. Herrmann, L. Pelkmans, Multiplexed protein maps link subcellular organization to cellular states. Science 361 (2018).\n\n\n5. A. L. Kiemen, A. M. Braxton, M. P. Grahn, K. S. Han, J. M. Babu, R. Reichel, A. C. Jiang, B. Kim, J. Hsu, F. Amoa, S. Reddy, S.-M. Hong, T. C. Cornish, E. D. Thompson, P. Huang, L. D. Wood, R. H. Hruban, D. Wirtz, P.-H. Wu, CODA: Quantitative 3D reconstruction of large tissues at cellular resolution. Nature Methods 19, 1490–1499 (2022).\n\n\n6. Denis, Wirtz (2026). https://bsky.app/profile/deniswirtz.bsky.social/post/3mg6kjndbx225.\n\n\n7. F. Wu, S. Zheng, Y. Chen, P. Ye, M. J. Kim, S. Lee, G. Kuo, S. Pillan, R. Yuan, K. S. Han, B. Yu, Q. Zhu, S. M. Shin, C. D. Cannon, G. Pierre, K. Iwasaki, C. Aguayo-Mazzucato, N. Musi, G. A. Kuchel, B. Schilling, L. D. Wood, W. J. Ho, R. A. Anders, D. Wirtz, P.-H. Wu, iCLAP: An innovative method for integrable co-detection of low-abundance antigens with high-plex immunostaining. Nature Communications, doi: 10.1038/s41467-026-69752-y (2026).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   }
 ]

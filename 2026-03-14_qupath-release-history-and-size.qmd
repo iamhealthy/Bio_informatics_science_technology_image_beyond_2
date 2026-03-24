@@ -40,9 +40,9 @@ qupath_grob <- qupath |>
     grid::rasterGrob() # Change to graphic object
 
 qupath_history |> tidyplot(x = Release_date, y = Installer_size, color = Installer_size) |> 
-    add(ggplot2::geom_line()) |>
+    add(ggplot2::geom_line(size = 0.6)) |>
     add_data_points(size = 2, white_border = TRUE, shape = 18) |> 
-    add_data_labels_repel(label = Version, fontsize = 12) |>
+    add_data_labels_repel(label = Version, fontsize = 12, min.segment.length = 0) |>
     add_title("The release history and Windows installer size of QuPath") |> 
     add_caption(paste("Source: https://github.com/qupath (as of 2026-03-17).", "Exe size for v0.x.x; msi size for v0.2.x and beyond.", sep = "\n")) |> 
     adjust_size(width = 150, height = 75, unit = "mm") |> 

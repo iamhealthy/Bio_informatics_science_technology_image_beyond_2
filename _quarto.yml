@@ -6,9 +6,9 @@ book:
   subtitle: 内容是个人的，因此是片面的
   author: iAmHealthy
   date: last-modified
-  favicon: qupath-style.png
+  favicon: images/2026-03-10_swan-inverted-reflection.png
   page-navigation: true
-  cover-image: qupath-style.png
+  cover-image: images/2026-03-10_swan-inverted-reflection.png
   page-footer: 
     center: "Copyright 2026 iAmHealthy"
     background: dark
@@ -28,6 +28,7 @@ book:
       chapters:
         - 2026-03-09_swan.qmd
         - 2026-03-14_qupath-release-history-and-size.qmd
+        - 2026-03-23_qupath-snapshot.qmd
 
     - part: 技术相关
       chapters:
