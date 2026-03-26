@@ -10,7 +10,8 @@ lang: en
 除过`v0.0.1-beta`（属于Pre-release），其它的pre-release版本不统计。
 
 ```{r}
-#| message: FALSE
+#| message: false
+#| warning: false
 
 tidyplots |> library() # for plotting
 ggplot2 |> library() # for plotting

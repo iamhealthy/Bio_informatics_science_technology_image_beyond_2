@@ -21,8 +21,11 @@ book:
     - part: R
       chapters:
         - 2026-03-02_新疆生产建设兵团的分布.qmd
+        - 2026-03-26_quote-of-the-day.qmd
 
-    - part: QuPath      
+    - part: QuPath
+      chapters: 
+        - 2026-03-25_mrxs-to-ome.qmd      
 
     - part: R & QuPath
       chapters:
@@ -41,7 +44,7 @@ book:
     - part: 生物图像分析流程
 
     - part: 其它
-
+      chapters:
         - 给我买杯茶.qmd
 
 bibliography: references.bib

@@ -1,0 +1,55 @@
+---
+title: 每日一句
+subtitle: Quote of the day
+date: 2026-03-26
+toc-depth: 4
+toc-expand: true
+lang: en
+---
+
+```{r}
+#| eval: false
+#| code-overflow: scroll
+"ggplot2" |> library()
+"ggtext" |> library()
+"tibble" |> library()
+
+df <- tibble(
+    label = c(
+        "<span style='font-size: 20pt;'><i><b><span style='color: #C0392B;'>China</span></b> is ruled by <b><span style='color: #C0392B;'>engineers</span></b>,<br><br>whereas <b><span style='color: #2E86C1;'>the United States</span></b> is ruled by <b><span style='color: #2E86C1;'>lawyers</span></b>.</i></span>",
+
+        "<span style='font-size: 10pt;'>
+            <i>Source: https://www.nature.com/articles/d41586-026-00841-0</i>
+        </span>"
+    ),
+    x = c(.5, .95),
+    y = c(.5, .2),
+    hjust = c(0.5, 1),
+    vjust = c(0.5, 1),
+    color = c("black", "gray")
+)
+
+df |> ggplot() +
+    aes(
+        x, y, label = label, hjust = hjust, vjust = vjust, color = color
+    ) +
+    scale_color_identity() +
+    geom_richtext(fill = NA, label.color = NA) +
+    xlim(0, 1) + ylim(0, 1) +
+    annotate("rect", xmin = 0.01, xmax = 0.99, ymin = 0, ymax = 1, fill = NA, color = "black") +
+    annotate("rect", xmin = 0, xmax = 0.02, ymin = 0.8, ymax = 0.9, fill = "cornsilk") +
+    annotate("text", x = 0.01, y = 0.8, label = "“", hjust = 0.5, vjust = 0.5, size = 30) +
+    annotate("rect", xmin = 0.98, xmax = 1, ymin = 0.1, ymax = 0.2, fill = "cornsilk") +
+    annotate("text", x = 0.99, y = 0.1, label = "”", hjust = 0.5, vjust = 0.5, size = 30) +
+    theme_void() +
+    theme(
+        plot.background = element_rect(fill = "cornsilk"),
+        panel.background = element_rect(fill = "cornsilk")
+    )
+
+"images/2026-03-26_quote-of-the-day.png" |> ggsave()
+```
+
+<center>
+![](images/2026-03-26_quote-of-the-day.png)
+</center>

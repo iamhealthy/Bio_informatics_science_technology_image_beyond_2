@@ -6,10 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="iAmHealthy">
-<meta name="dcterms.date" content="2026-03-26">
+<meta name="dcterms.date" content="2026-03-25">
 
-<title>【生物】信息、科技、和图像分析（2）</title>
+<title>3&nbsp; mrxs to OME-NGFF/TIFF – 【生物】信息、科技、和图像分析（2）</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,7 +24,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -35,7 +53,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./2026-03-02_新疆生产建设兵团的分布.html" rel="next">
+<link href="./2026-03-09_swan.html" rel="next">
+<link href="./2026-03-26_quote-of-the-day.html" rel="prev">
 <link href="./images/2026-03-10_swan-inverted-reflection.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -253,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">前言</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2026-03-25_mrxs-to-ome.html">QuPath</a></li><li class="breadcrumb-item"><a href="./2026-03-25_mrxs-to-ome.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -283,7 +302,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">前言</span></a>
   </div>
 </li>
@@ -321,7 +340,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2026-03-25_mrxs-to-ome.html" class="sidebar-item-text sidebar-link">
+  <a href="./2026-03-25_mrxs-to-ome.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></span></a>
   </div>
 </li>
@@ -408,11 +427,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#前言" id="toc-前言" class="nav-link active" data-scroll-target="#前言">前言</a></li>
+  <li><a href="#mrxs格式he图片转为ome-ngff和ome-tiff格式" id="toc-mrxs格式he图片转为ome-ngff和ome-tiff格式" class="nav-link active" data-scroll-target="#mrxs格式he图片转为ome-ngff和ome-tiff格式">1. mrxs格式HE图片转为OME-NGFF和OME-TIFF格式</a></li>
+  <li><a href="#mrxs格式pas图片转为ome-ngff和ome-tiff格式" id="toc-mrxs格式pas图片转为ome-ngff和ome-tiff格式" class="nav-link" data-scroll-target="#mrxs格式pas图片转为ome-ngff和ome-tiff格式">2. mrxs格式PAS图片转为OME-NGFF和OME-TIFF格式</a></li>
+  <li><a href="#mrxs格式多色荧光图片转为ome-ngff和ome-tiff格式" id="toc-mrxs格式多色荧光图片转为ome-ngff和ome-tiff格式" class="nav-link" data-scroll-target="#mrxs格式多色荧光图片转为ome-ngff和ome-tiff格式">3. mrxs格式多色荧光图片转为OME-NGFF和OME-TIFF格式</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -420,27 +442,21 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2026-03-25_mrxs-to-ome.html">QuPath</a></li><li class="breadcrumb-item"><a href="./2026-03-25_mrxs-to-ome.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">【生物】信息、科技、和图像分析（2）</h1>
-<p class="subtitle lead">内容是个人的，因此是片面的</p>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></h1>
+<p class="subtitle lead">通过NGFF-Converter将mrxs格式转为OME-NGFF或OME-TIFF，并用QuPath打开</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>iAmHealthy </p>
-          </div>
-  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 26, 2026</p>
+      <p class="date">March 25, 2026</p>
     </div>
   </div>
   
@@ -452,29 +468,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>在某些情况下，可能QuPath不能正确的打开mrxs格式图片<span class="citation" data-cites="QuPath_mrxs2026">(<a href="#ref-QuPath_mrxs2026" role="doc-biblioref"><em>1</em></a>)</span>, <span class="citation" data-cites="iAmHealthy_mrxs">(<a href="#ref-iAmHealthy_mrxs" role="doc-biblioref"><em>2</em></a>)</span>。</p>
+<p>在这里通过NGFF-Converter（Glencoe SOFTWARE，美国；<a href="https://www.glencoesoftware.com/products/ngff-converter/" class="uri">https://www.glencoesoftware.com/products/ngff-converter/</a>）尝试将mrxs格式图片（即HE切片、PAS切片、和多色荧光切片）转为OME-NGFF和OME-TIFF格式，并在QuPath打开测试。</p>
+<section id="mrxs格式he图片转为ome-ngff和ome-tiff格式" class="level2">
+<h2 class="anchored" data-anchor-id="mrxs格式he图片转为ome-ngff和ome-tiff格式">1. mrxs格式HE图片转为OME-NGFF和OME-TIFF格式</h2>
+<center>
+<p><img src="images/2026-03-25_ngff_mrxs.png" class="img-fluid" style="width: 100%; border: 1px solid gray; border-radius: 6px;"></p>
+<p>图片格式转换界面。</p>
+<p><img src="images/2026-03-26_mrxs-he_ome.png" class="img-fluid" style="width: 100%; border: 1px solid gray; border-radius: 6px;"></p>
+mrxs（左上；server type：OpenSlide）、OME-NGFF（左下；server type：Bio-Formats）、和OME-TIFF（右上；server type：Bio-Formats）。Server type由QuPath决定。
+</center>
+<p>肉眼感觉mrxs和OME图片的颜色不统一？可能是因为彼此默认的server type不同（或其它原因）导致的，<strong>但对应像素的rgb值是相同的</strong>，因此不用担心。</p>
+</section>
+<section id="mrxs格式pas图片转为ome-ngff和ome-tiff格式" class="level2">
+<h2 class="anchored" data-anchor-id="mrxs格式pas图片转为ome-ngff和ome-tiff格式">2. mrxs格式PAS图片转为OME-NGFF和OME-TIFF格式</h2>
+<center>
+<p><img src="images/2026-03-26_mrxs-pas_ome.png" class="img-fluid" style="width: 100%; border: 1px solid gray; border-radius: 6px;"></p>
+mrxs（左上；server type：OpenSlide）、OME-NGFF（左下；server type：Bio-Formats）、和OME-TIFF（右上；server type：Bio-Formats）。Server type由QuPath决定。
+</center>
+</section>
+<section id="mrxs格式多色荧光图片转为ome-ngff和ome-tiff格式" class="level2">
+<h2 class="anchored" data-anchor-id="mrxs格式多色荧光图片转为ome-ngff和ome-tiff格式">3. mrxs格式多色荧光图片转为OME-NGFF和OME-TIFF格式</h2>
+<center>
+<p><img src="images/2026-03-26_mrxs-fluo_ome.png" class="img-fluid" style="width: 100%; border: 1px solid gray; border-radius: 6px;"></p>
+mrxs（左上；server type：OpenSlide）、OME-NGFF（左下；server type：Bio-Formats）、和OME-TIFF（右上；server type：Bio-Formats）。Server type由QuPath决定。
+</center>
+<p>mrxs格式多色荧光图片不能被QuPath正确打开：识别成了rgb图片（即无荧光通道信息）；没有金字塔信息；图片含有矩形灰色区域<span class="citation" data-cites="iAmHealthy_mrxs">(<a href="#ref-iAmHealthy_mrxs" role="doc-biblioref"><em>2</em></a>)</span>。</p>
+<p>转换后的OME-NGFF和OME-TIFF则能被QuPath正确打开。</p>
+<p><strong>如果遇到其它软件不能正确打开mrxs时，不妨用NGFF-Converter转换为OME-NGFF或OME-TIFF试试。</strong></p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
 
-<section id="前言" class="level1 unnumbered">
-<h1 class="unnumbered">前言</h1><p><img src="images/2026-03-10_swan-inverted-reflection.png" title="【生物】信息、科技、和图像分析（2）" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>看到了，如果有感触，就写点。</p>
-<p>内容可能涉及：</p>
-<ul>
-<li><strong>R</strong> v4.5.2；
-<ul>
-<li>tidyverse v2.0.0;</li>
-<li>sf v1.1.0</li>
-<li>ggtext v0.1.2</li>
-<li>tidyplots v0.4.0</li>
-<li>magick v2.9.1</li>
-<li>grid v4.5.2</li>
-</ul></li>
-<li><strong>QuPath</strong> v0.7.0（ImageJ）；</li>
-<li><strong>生物医学相关的科技</strong>；</li>
-<li><strong>生物图像处理</strong>；</li>
-<li><strong>其它</strong>。</li>
-</ul>
-<p>📧：15821314790@126.com</p>
 
-
+<div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-QuPath_mrxs2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">QuPath, Supported image formats_MRXS (3D HISTECH) (2026). <a href="https://qupath.readthedocs.io/en/0.7/docs/intro/formats.html#mrxs-3d-histech">https://qupath.readthedocs.io/en/0.7/docs/intro/formats.html#mrxs-3d-histech</a>.</div>
+</div>
+<div id="ref-iAmHealthy_mrxs" class="csl-entry" role="listitem">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline"><span class="nocase">iAmHealthy</span>, 用QuPath打开mrxs格式切片图像的问题 (2026). <a href="https://bioinfo-scitech-image-more1.netlify.app/2025-09-30_%E7%94%A8qupath%E6%89%93%E5%BC%80mrxs%E6%A0%BC%E5%BC%8F%E5%88%87%E7%89%87%E5%9B%BE%E5%83%8F%E7%9A%84%E9%97%AE%E9%A2%98">https://bioinfo-scitech-image-more1.netlify.app/2025-09-30_%E7%94%A8qupath%E6%89%93%E5%BC%80mrxs%E6%A0%BC%E5%BC%8F%E5%88%87%E7%89%87%E5%9B%BE%E5%83%8F%E7%9A%84%E9%97%AE%E9%A2%98</a>.</div>
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -893,10 +927,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./2026-03-26_quote-of-the-day.html" class="pagination-link" aria-label="每日一句">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">每日一句</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./2026-03-02_新疆生产建设兵团的分布.html" class="pagination-link" aria-label="新疆生产建设兵团">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">新疆生产建设兵团</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./2026-03-09_swan.html" class="pagination-link" aria-label="天鹅和倒影">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">天鹅和倒影</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
