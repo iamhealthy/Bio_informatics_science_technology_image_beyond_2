@@ -65,4 +65,6 @@ df |> ggplot() +
 背景图片来自<https://www.netflix.com/tudum/articles/how-to-watch-alex-honnold-skyscraper-climb-live-netflix>，并通过QuPath进行了color deconvolution [@iAmHealthy_alex]。
 :::
 
+[给我买杯茶🍵](给我买杯茶.qmd)
+
 ## References

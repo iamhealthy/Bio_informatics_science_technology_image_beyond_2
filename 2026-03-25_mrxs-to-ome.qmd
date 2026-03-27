@@ -48,4 +48,6 @@ mrxs格式多色荧光图片不能被QuPath正确打开：识别成了rgb图片�
 
 **如果遇到其它软件不能正确打开mrxs时，不妨用NGFF-Converter转换为OME-NGFF或OME-TIFF试试。**
 
+[给我买杯茶🍵](给我买杯茶.qmd)
+
 ## References

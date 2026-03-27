@@ -69,7 +69,7 @@
     "href": "2026-03-26_quote-of-the-day.html",
     "title": "2  每日一句",
     "section": "",
-    "text": "References",
+    "text": "References\n给我买杯茶🍵",
     "crumbs": [
       "R",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>每日一句</span>"
@@ -124,7 +124,7 @@
     "href": "2026-03-25_mrxs-to-ome.html#mrxs格式多色荧光图片转为ome-ngff和ome-tiff格式",
     "title": "3  mrxs to OME-NGFF/TIFF",
     "section": "3. mrxs格式多色荧光图片转为OME-NGFF和OME-TIFF格式",
-    "text": "3. mrxs格式多色荧光图片转为OME-NGFF和OME-TIFF格式\n\n\nmrxs（左上；server type：OpenSlide）、OME-NGFF（左下；server type：Bio-Formats）、和OME-TIFF（右上；server type：Bio-Formats）。Server type由QuPath决定。\n\nmrxs格式多色荧光图片不能被QuPath正确打开：识别成了rgb图片（即无荧光通道信息）；没有金字塔信息；图片含有矩形灰色区域(2)。\n转换后的OME-NGFF和OME-TIFF则能被QuPath正确打开。\n如果遇到其它软件不能正确打开mrxs时，不妨用NGFF-Converter转换为OME-NGFF或OME-TIFF试试。",
+    "text": "3. mrxs格式多色荧光图片转为OME-NGFF和OME-TIFF格式\n\n\nmrxs（左上；server type：OpenSlide）、OME-NGFF（左下；server type：Bio-Formats）、和OME-TIFF（右上；server type：Bio-Formats）。Server type由QuPath决定。\n\nmrxs格式多色荧光图片不能被QuPath正确打开：识别成了rgb图片（即无荧光通道信息）；没有金字塔信息；图片含有矩形灰色区域(2)。\n转换后的OME-NGFF和OME-TIFF则能被QuPath正确打开。\n如果遇到其它软件不能正确打开mrxs时，不妨用NGFF-Converter转换为OME-NGFF或OME-TIFF试试。\n给我买杯茶🍵",
     "crumbs": [
       "QuPath",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>mrxs to OME-NGFF/TIFF</span>"
