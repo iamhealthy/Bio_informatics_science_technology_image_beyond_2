@@ -13,6 +13,8 @@ lang: en
 "ggplot2" |> library()
 "ggtext" |> library()
 "tibble" |> library()
+"magick" |> library()
+"grid" |> library()
 
 df <- tibble(
     label = c(
@@ -22,34 +24,45 @@ df <- tibble(
             <i>Source: https://www.nature.com/articles/d41586-026-00841-0</i>
         </span>"
     ),
-    x = c(.5, .95),
+    x = c(.5, .9),
     y = c(.5, .2),
     hjust = c(0.5, 1),
     vjust = c(0.5, 1),
-    color = c("black", "gray")
+    color = c("black", "black")
 )
+
+# Read the image
+alex <- "images/56_Alex_Honold_dab.png" |> 
+    magick::image_read()
+
+alex_grob <- alex |> 
+    grid::rasterGrob(width = unit(1, "npc"), height = unit(1, "npc")) # Convert the image to a grob object
 
 df |> ggplot() +
     aes(
         x, y, label = label, hjust = hjust, vjust = vjust, color = color
     ) +
     scale_color_identity() +
-    geom_richtext(fill = NA, label.color = NA) +
+    annotation_custom(alex_grob, xmin = 0.01, xmax = 0.99, ymin = 0, ymax = 1) +
+    geom_richtext(fill = "cornsilk", label.color = NA, alpha = 0.7) +
     xlim(0, 1) + ylim(0, 1) +
     annotate("rect", xmin = 0.01, xmax = 0.99, ymin = 0, ymax = 1, fill = NA, color = "black") +
-    annotate("rect", xmin = 0, xmax = 0.02, ymin = 0.8, ymax = 0.9, fill = "cornsilk") +
-    annotate("text", x = 0.01, y = 0.8, label = "“", hjust = 0.5, vjust = 0.5, size = 30) +
-    annotate("rect", xmin = 0.98, xmax = 1, ymin = 0.1, ymax = 0.2, fill = "cornsilk") +
-    annotate("text", x = 0.99, y = 0.1, label = "”", hjust = 0.5, vjust = 0.5, size = 30) +
+    annotate("text", x = 0.01, y = 0.8, label = "“", hjust = 0, vjust = 0.5, size = 30) +
+    annotate("text", x = 0.99, y = 0.1, label = "”", hjust = 1, vjust = 0.5, size = 30) +
     theme_void() +
     theme(
-        plot.background = element_rect(fill = "cornsilk"),
-        panel.background = element_rect(fill = "cornsilk")
+        plot.background = element_rect(fill = "cornsilk")
     )
 
 "images/2026-03-26_quote-of-the-day.png" |> ggsave()
 ```
 
 <center>
-![](images/2026-03-26_quote-of-the-day.png)
+![](images/2026-03-26_quote-of-the-day.png){style="width: 100%; border-radius: 6px;"}
 </center>
+
+:::{.callout-note icon="true"}
+背景图片来自<https://www.netflix.com/tudum/articles/how-to-watch-alex-honnold-skyscraper-climb-live-netflix>，并通过QuPath进行了color deconvolution [@iAmHealthy_alex]。
+:::
+
+## References

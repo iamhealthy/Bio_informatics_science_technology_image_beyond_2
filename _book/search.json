@@ -69,7 +69,18 @@
     "href": "2026-03-26_quote-of-the-day.html",
     "title": "2  每日一句",
     "section": "",
-    "text": "\"ggplot2\" |&gt; library()\n\"ggtext\" |&gt; library()\n\"tibble\" |&gt; library()\n\ndf &lt;- tibble(\n    label = c(\n        \"&lt;span style='font-size: 20pt;'&gt;&lt;i&gt;&lt;b&gt;&lt;span style='color: #C0392B;'&gt;China&lt;/span&gt;&lt;/b&gt; is ruled by &lt;b&gt;&lt;span style='color: #C0392B;'&gt;engineers&lt;/span&gt;&lt;/b&gt;,&lt;br&gt;&lt;br&gt;whereas &lt;b&gt;&lt;span style='color: #2E86C1;'&gt;the United States&lt;/span&gt;&lt;/b&gt; is ruled by &lt;b&gt;&lt;span style='color: #2E86C1;'&gt;lawyers&lt;/span&gt;&lt;/b&gt;.&lt;/i&gt;&lt;/span&gt;\",\n\n        \"&lt;span style='font-size: 10pt;'&gt;\n            &lt;i&gt;Source: https://www.nature.com/articles/d41586-026-00841-0&lt;/i&gt;\n        &lt;/span&gt;\"\n    ),\n    x = c(.5, .95),\n    y = c(.5, .2),\n    hjust = c(0.5, 1),\n    vjust = c(0.5, 1),\n    color = c(\"black\", \"gray\")\n)\n\ndf |&gt; ggplot() +\n    aes(\n        x, y, label = label, hjust = hjust, vjust = vjust, color = color\n    ) +\n    scale_color_identity() +\n    geom_richtext(fill = NA, label.color = NA) +\n    xlim(0, 1) + ylim(0, 1) +\n    annotate(\"rect\", xmin = 0.01, xmax = 0.99, ymin = 0, ymax = 1, fill = NA, color = \"black\") +\n    annotate(\"rect\", xmin = 0, xmax = 0.02, ymin = 0.8, ymax = 0.9, fill = \"cornsilk\") +\n    annotate(\"text\", x = 0.01, y = 0.8, label = \"“\", hjust = 0.5, vjust = 0.5, size = 30) +\n    annotate(\"rect\", xmin = 0.98, xmax = 1, ymin = 0.1, ymax = 0.2, fill = \"cornsilk\") +\n    annotate(\"text\", x = 0.99, y = 0.1, label = \"”\", hjust = 0.5, vjust = 0.5, size = 30) +\n    theme_void() +\n    theme(\n        plot.background = element_rect(fill = \"cornsilk\"),\n        panel.background = element_rect(fill = \"cornsilk\")\n    )\n\n\"images/2026-03-26_quote-of-the-day.png\" |&gt; ggsave()",
+    "text": "References",
+    "crumbs": [
+      "R",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>每日一句</span>"
+    ]
+  },
+  {
+    "objectID": "2026-03-26_quote-of-the-day.html#references",
+    "href": "2026-03-26_quote-of-the-day.html#references",
+    "title": "2  每日一句",
+    "section": "",
+    "text": "1. iAmHealthy, Alex Honnold徒手无保护攀爬台北101 (2026). https://bioinfo-scitech-image-more1.netlify.app/2026-02-03_keep-climbing.",
     "crumbs": [
       "R",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>每日一句</span>"
