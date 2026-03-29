@@ -22,6 +22,7 @@ book:
       chapters:
         - 2026-03-02_新疆生产建设兵团的分布.qmd
         - 2026-03-26_quote-of-the-day.qmd
+        - 2026-03-28_high-fidelity-dna-polymerases.qmd
 
     - part: QuPath
       chapters: 
