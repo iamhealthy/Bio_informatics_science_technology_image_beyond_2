@@ -1,6 +1,6 @@
 ---
 title: High-fidelity DNA polymerases
-subtitle: The high-fidelity capacity of DNA polymerases compared to taq DNA polymerase
+subtitle: The high-fidelity capacity of DNA polymerases compared to *Taq* DNA polymerase
 date: 2026-03-28
 toc-depth: 4
 toc-expand: true
@@ -16,7 +16,7 @@ lang: en
 
 - 保真性参数来自其公司产品网页的描述（因此数据真实性由公司负责）。
 
-- 若某个公司未提及其高保真DNA聚合酶的保真性参数（即相比于<i>Taq</i>DNA聚合酶），则不统计该酶。
+- 若某个公司未提及其高保真DNA聚合酶的保真性参数（即相比于<i>Taq</i> DNA聚合酶），则不统计该酶。
 :::
 
 ## 1. 读取整理的数据表格并展示
