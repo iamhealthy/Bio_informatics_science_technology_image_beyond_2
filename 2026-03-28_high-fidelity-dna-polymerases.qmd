@@ -66,7 +66,7 @@ hifi |> tidyplots::tidyplot(x = dna_polymerase_provider, y = `fidelity-than-taq`
 ThermoFisher于2021年[@Mielinis2021]基于Unique MuA-based Molecular Indexing（UMAMI）技术策略比较了几种高保真DNA聚合酶的保真性。
 
 <center>
-![Platinum SuperFi II（ThermoFisher）“遥遥领先”。](images/2026-03-29_high-fidelity-dna-polymerases_thermo.png){style="width: 100%;"}
+![Platinum SuperFi II（ThermoFisher）“遥遥领先”，即使相比于Q5。](images/2026-03-29_high-fidelity-dna-polymerases_thermo.png){style="width: 100%;"}
 </center>
 
 [给我买杯茶🍵](给我买杯茶.qmd)
