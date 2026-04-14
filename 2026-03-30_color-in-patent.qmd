@@ -82,7 +82,7 @@ df <- tibble::tibble(
 default <- default |> 
     grid::rasterGrob(width = unit(1, "npc"), height = unit(1, "npc"))
 default_gray |> rm()
-default_gray <- "images/2026-03-30_scheme1_gray.png" |> 
+default_gray <- "images/2026-03-30_1_default_gray.png" |> 
     magick::image_read() |>  
     grid::rasterGrob(width = unit(1, "npc"), height = unit(1, "npc"))
 scheme1 <- scheme1 |> 
@@ -186,7 +186,7 @@ df <- tibble::tibble(
 default <- default |> 
     grid::rasterGrob(width = unit(1, "npc"), height = unit(1, "npc"))
 default_gray |> rm()
-default_gray <- "images/2026-03-30_scheme2_gray.png" |> 
+default_gray <- "images/2026-03-30_2_default_gray.png" |> 
     magick::image_read() |>  
     grid::rasterGrob(width = unit(1, "npc"), height = unit(1, "npc"))
 scheme2 <- scheme2 |> 
