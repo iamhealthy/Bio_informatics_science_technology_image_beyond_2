@@ -1,0 +1,11 @@
+x	y	labels
+a	1	a
+b
+b	1	b
+c
+c	1	c
+d
+d	1	d
+e
+e	1	e
+f
