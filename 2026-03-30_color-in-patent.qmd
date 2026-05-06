@@ -220,4 +220,6 @@ df |> tidyplots::tidyplot(x = x, y = y) |>
 
 结论不变：<mark>若考虑对应灰度图的反差度或区分度，彩色配色方案2胜出。</mark>
 
+[给我买杯茶🍵](给我买杯茶.qmd)
+
 ## References

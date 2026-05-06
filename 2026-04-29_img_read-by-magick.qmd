@@ -1,0 +1,123 @@
+---
+title: png/svg/pdf read by magick
+subtitle: png/svg/pdf images read by magick package, and the resultant format
+date: 2026-04-29
+toc-depth: 4
+toc-expand: true
+lang: en
+---
+
+R包`magick`用三个读取图片的函数，分别是`image_read()`、`image_read_svg()`、和`image_read_pdf()`。
+
+因此测试下其将图片读取后的图片格式是什么。
+
+## 1. 下载png和svg图片
+
+从<https://bioart.niaid.nih.gov/bioart/668>下载png格式（位图图像）和svg格式（矢量图）。
+
+```{r}
+"images/" |> 
+  fs::dir_tree(regexp = "^images/Rabbit0001\\.(png|svg)")  
+```
+
+## 2. 将svg图片转为pdf格式
+
+图片用microsoft edge浏览器打开svg图片 &rarr; 打印为microsoft pdf。
+
+```{r}
+"images/" |> 
+  fs::dir_tree(regexp = "^images/rabbit")  
+```
+
+## 3. 读取图片
+
+### 3.1 读取png格式
+
+```{r}
+magick |> library()
+
+png <- "images/Rabbit0001.png" |> 
+  magick::image_read()
+
+png |> image_info()
+
+png |> plot()
+```
+
+读取为png格式。
+
+### 3.2 读取svg格式
+
+```{r}
+svg <- "images/Rabbit0001.svg" |> 
+  magick::image_read_svg()
+
+svg |> image_info()
+```
+
+读取为png格式。
+
+### 3.3 读取pdf格式
+
+```{r}
+pdf <- "images/rabbit0001.pdf" |> 
+  magick::image_read_pdf()
+
+pdf |> image_info()
+```
+
+读取为png格式。
+
+## 4. 用`image_read()`读取svg和pdf
+
+```{r}
+# read svg
+svg1 <- "images/Rabbit0001.svg" |> 
+  magick::image_read()
+
+svg1 |> image_info()
+
+svg1 |> plot()
+```
+
+读取为svg格式（`image_read()`无法读取pdf）。
+
+## 5. `image_read`读取的svg是否可以嵌入tidyplots？
+
+```{r}
+tidyplots |> library()
+
+# View image information
+img_info <- svg1 |> magick::image_info()
+img_width <- img_info$width; img_height <- img_info$height
+# Change to graphical object
+img_grob <- svg1 |> grid::rasterGrob()
+
+# Create a data frame relevant to img_grob
+df <- tibble::tibble(x = seq(0, img_width, length.out = 100),
+  y = seq(0, img_height, length.out = 100))
+
+# The intended width of image
+img_intend_width = 50 # unit: mm
+# Tailor relative extra spaces of plot
+top_extra = 0 # 0 (0%) - 1 (100%)
+right_extra = 0; bottom_extra = 0; left_extra = 0
+
+# The width and height of plot
+plot_width = img_intend_width * (1 + left_extra + right_extra) # unit: mm
+plot_height = img_intend_width * (img_height/img_width) * (1 + top_extra + bottom_extra)
+
+# Plot
+p1 <- df |> tidyplot(x = x, y = y) |> 
+  add_data_points(alpha = 0) |> 
+  add(ggplot2::annotation_custom(img_grob, xmin = 0, xmax = img_width, 
+    ymin = img_height, ymax = 0))
+
+p1
+
+p1 |> 
+  save_plot("images/Rabbit0001_tidyplot.pdf", view_plot = FALSE) |> 
+  save_plot("images/Rabbit0001_tidyplot.png", view_plot = FALSE)
+```
+
+[给我买杯茶🍵](给我买杯茶.qmd)

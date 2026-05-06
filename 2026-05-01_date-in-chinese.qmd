@@ -1,0 +1,73 @@
+---
+title: Date in axis as Chinese
+subtitle: Axis in Chinese for date in Chinese-version of Windows, and how to change to English (R_tidyplots)
+date: 2026-05-01
+toc-depth: 4
+toc-expand: true
+lang: en 
+---
+
+## 1. Get my computer info
+
+```{r name1}
+comp_info <- sessionInfo()
+
+comp_info$platform
+comp_info$locale
+
+comp_info$R.version$version.string
+comp_info$R.version$platform
+```
+
+可看出，我的电脑是Windows 64位操作系统，语言是简体中文；R版本号是v4.5.3。
+
+## 2. Plot
+
+```{r}
+tidyplots |> library()
+
+# View top 10 rows of columns used
+energy_week |> 
+  dplyr::select(date, power, energy_source) |> 
+  dplyr::slice_head(n = 10)
+```
+
+可看出：`date`列是`dttm`（date-time）格式；`power`列是`dbl`（double）格式；`energy_source`是`fct`(factor)格式。
+
+```{r}
+p1 <- energy_week |> 
+  tidyplot(x = date, y = power, color = energy_source) |> 
+  add_title(title = "p1: x axis labels in Chinese") |> 
+  add_areastack_relative() |> 
+  adjust_size(width = 100)
+
+p1
+```
+
+能看出：x轴的labels含有“月”字。
+
+## 3. Change x axis labels to English
+
+```{r}
+# Change date type to character
+energy_week_char <- energy_week |> 
+  dplyr::mutate(date1 = as.character(date))
+
+# View top 10 rows of columns involved
+energy_week_char |> 
+  dplyr::select(date, date1, power, energy_source) |> 
+  dplyr::slice_head(n = 10)
+
+p2 <- energy_week_char |> 
+  tidyplot(x = date1, y = power, color = energy_source) |> 
+  add_title(title = "p2: x axis labels in English") |> 
+  add_areastack_relative() |> 
+  adjust_size(width = 100) |> 
+  adjust_x_axis(
+    breaks = c("2023-09-05", "2023-09-07", "2023-09-09"),
+    labels = c("Sep 05", "Sep 07", "Sep 09"))
+
+p2
+```
+
+[给我买杯茶🍵](给我买杯茶.qmd)

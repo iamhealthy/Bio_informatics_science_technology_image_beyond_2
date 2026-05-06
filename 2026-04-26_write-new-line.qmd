@@ -14,7 +14,7 @@ lang: en
 df <- tibble::tibble(
     x = letters[1:5],
     y = rep(1, 5),
-    labels = c("a\nb", "b\nc", "c\nd", "d\ne", "e\nf")
+    labels = c("a \nb \nc", "b\nc", "c\nd", "d\ne", "e\nf")
 )
 
 # View df
@@ -124,3 +124,5 @@ patchwork::wrap_plots(p1, p2, p3, p4, ncol = 2) |>
 </center>
 
 换行符确实在plot中让换行了😁。
+
+[给我买杯茶🍵](给我买杯茶.qmd)

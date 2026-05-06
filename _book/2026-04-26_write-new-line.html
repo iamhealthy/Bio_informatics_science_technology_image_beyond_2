@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./2026-03-25_mrxs-to-ome.html" rel="next">
+<link href="./2026-04-29_point-shapes-in-r.html" rel="next">
 <link href="./2026-03-30_color-in-patent.html" rel="prev">
 <link href="./images/2026-03-10_swan-inverted-reflection.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -361,6 +361,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">换行符保存</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2026-04-29_point-shapes-in-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Point shapes in R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2026-05-01_date-in-chinese.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Date in axis as Chinese</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2026-05-06_ways-to-inset-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Inset images</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -375,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2026-03-25_mrxs-to-ome.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></span></a>
   </div>
 </li>
       </ul>
@@ -392,19 +410,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2026-03-09_swan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">天鹅和倒影</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">天鹅和倒影</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2026-03-14_qupath-release-history-and-size.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">QuPath-History-Size</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">QuPath-History-Size</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2026-03-23_qupath-snapshot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">导出QuPath快照</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">导出QuPath快照</span></span></a>
   </div>
 </li>
       </ul>
@@ -421,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2026-03-04_切片染色方法.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">切片染色方法</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">切片染色方法</span></span></a>
   </div>
 </li>
       </ul>
@@ -509,20 +527,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"a</span><span class="sc">\n</span><span class="st">b"</span>, <span class="st">"b</span><span class="sc">\n</span><span class="st">c"</span>, <span class="st">"c</span><span class="sc">\n</span><span class="st">d"</span>, <span class="st">"d</span><span class="sc">\n</span><span class="st">e"</span>, <span class="st">"e</span><span class="sc">\n</span><span class="st">f"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"a </span><span class="sc">\n</span><span class="st">b </span><span class="sc">\n</span><span class="st">c"</span>, <span class="st">"b</span><span class="sc">\n</span><span class="st">c"</span>, <span class="st">"c</span><span class="sc">\n</span><span class="st">d"</span>, <span class="st">"d</span><span class="sc">\n</span><span class="st">e"</span>, <span class="st">"e</span><span class="sc">\n</span><span class="st">f"</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># View df</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
-  x         y labels
-  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
-1 a         1 "a\nb"
-2 b         1 "b\nc"
-3 c         1 "c\nd"
-4 d         1 "d\ne"
-5 e         1 "e\nf"</code></pre>
+  x         y labels     
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      
+1 a         1 "a \nb \nc"
+2 b         1 "b\nc"     
+3 c         1 "c\nd"     
+4 d         1 "d\ne"     
+5 e         1 "e\nf"     </code></pre>
 </div>
 </div>
 </section>
@@ -569,13 +587,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df_csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
-  x         y labels
-  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
-1 a         1 "a\nb"
-2 b         1 "b\nc"
-3 c         1 "c\nd"
-4 d         1 "d\ne"
-5 e         1 "e\nf"</code></pre>
+  x         y labels     
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      
+1 a         1 "a \nb \nc"
+2 b         1 "b\nc"     
+3 c         1 "c\nd"     
+4 d         1 "d\ne"     
+5 e         1 "e\nf"     </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read txt file</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_txt <span class="ot">&lt;-</span> </span>
@@ -585,19 +603,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>df_txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
+<pre><code># A tibble: 11 × 3
    x         y labels
    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
  1 a         1 a     
  2 b        NA &lt;NA&gt;  
- 3 b         1 b     
- 4 c        NA &lt;NA&gt;  
- 5 c         1 c     
- 6 d        NA &lt;NA&gt;  
- 7 d         1 d     
- 8 e        NA &lt;NA&gt;  
- 9 e         1 e     
-10 f        NA &lt;NA&gt;  </code></pre>
+ 3 c        NA &lt;NA&gt;  
+ 4 b         1 b     
+ 5 c        NA &lt;NA&gt;  
+ 6 c         1 c     
+ 7 d        NA &lt;NA&gt;  
+ 8 d         1 d     
+ 9 e        NA &lt;NA&gt;  
+10 e         1 e     
+11 f        NA &lt;NA&gt;  </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read xlsx file</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_xlsx <span class="ot">&lt;-</span> </span>
@@ -608,13 +627,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df_xlsx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
-  x         y labels
-  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
-1 a         1 "a\nb"
-2 b         1 "b\nc"
-3 c         1 "c\nd"
-4 d         1 "d\ne"
-5 e         1 "e\nf"</code></pre>
+  x         y labels     
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      
+1 a         1 "a \nb \nc"
+2 b         1 "b\nc"     
+3 c         1 "c\nd"     
+4 d         1 "d\ne"     
+5 e         1 "e\nf"     </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read rds file</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_rds <span class="ot">&lt;-</span> </span>
@@ -625,13 +644,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>df_rds</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
-  x         y labels
-  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
-1 a         1 "a\nb"
-2 b         1 "b\nc"
-3 c         1 "c\nd"
-4 d         1 "d\ne"
-5 e         1 "e\nf"</code></pre>
+  x         y labels     
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      
+1 a         1 "a \nb \nc"
+2 b         1 "b\nc"     
+3 c         1 "c\nd"     
+4 d         1 "d\ne"     
+5 e         1 "e\nf"     </code></pre>
 </div>
 </div>
 <p><mark>看来若df中含有<code>\n</code>，则不能把df存储为tsv格式。</mark></p>
@@ -673,6 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="images/2026-04-26_line-feed.png" class="img-fluid">
 
 <p>换行符确实在plot中让换行了😁。</p>
+<p><a href="./给我买杯茶.html">给我买杯茶🍵</a></p>
 
 
 </section>
@@ -1098,8 +1118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./2026-03-25_mrxs-to-ome.html" class="pagination-link" aria-label="mrxs to OME-NGFF/TIFF">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">mrxs to OME-NGFF/TIFF</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./2026-04-29_point-shapes-in-r.html" class="pagination-link" aria-label="Point shapes in R">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Point shapes in R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

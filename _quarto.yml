@@ -25,6 +25,10 @@ book:
         - 2026-03-28_high-fidelity-dna-polymerases.qmd
         - 2026-03-30_color-in-patent.qmd
         - 2026-04-26_write-new-line.qmd
+        - 2026-04-29_point-shapes-in-r.qmd
+        - 2026-04-29_img_read-by-magick.html
+        - 2026-05-01_date-in-chinese.qmd
+        - 2026-05-06_ways-to-inset-images.qmd
 
     - part: QuPath
       chapters: 

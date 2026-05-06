@@ -1,6 +1,7 @@
 x,y,labels
-a,1,"a
-b"
+a,1,"a 
+b 
+c"
 b,1,"b
 c"
 c,1,"c
