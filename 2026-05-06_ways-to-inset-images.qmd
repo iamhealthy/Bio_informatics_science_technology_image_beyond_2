@@ -107,6 +107,15 @@ p3 |>
 <img src="images/2026-05-06_via-patchwork.png" width="80%" style="border: 1px solid #000000">
 </center>
 
+```{r}
+#| eval: false
+#| echo: false
+"images/2026-05-06_via-patchwork.png" |> 
+    magick::image_read() |> 
+    magick::image_border(color = "#000000", geometry = "1x1") |> 
+    magick::image_write("images/2026-05-06_via-patchwork_border.png")
+```
+
 ## 4. Conclusion
 
 ```{r}
