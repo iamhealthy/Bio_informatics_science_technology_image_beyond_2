@@ -30,6 +30,7 @@ book:
         - 2026-05-01_date-in-chinese.qmd
         - 2026-05-06_ways-to-inset-images.qmd
         - 2016-05-13_reliable-experiment-perform.qmd
+        - 2026-05-21_take-a-break.qmd
 
     - part: QuPath
       chapters: 
@@ -67,6 +68,3 @@ format:
       dark: Solar
     code-copy: true
     number-depth: 1
-
-
-
