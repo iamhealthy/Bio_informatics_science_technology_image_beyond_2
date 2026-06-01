@@ -602,5 +602,38 @@
       "技术相关",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
+  },
+  {
+    "objectID": "2026-06-01_misconduct-paper.html",
+    "href": "2026-06-01_misconduct-paper.html",
+    "title": "16  造假的论文",
+    "section": "",
+    "text": "1. 同济的nature论文\n该文章情况通报的链接见https://news.tongji.edu.cn/info/1008/94355.htm。\nCode\nlibrary(lubridate)\nlibrary(dplyr)\nlibrary(tibble)\n\ndf &lt;- tibble::tibble(\n  received = lubridate::ymd(\"2022-01-18\"),\n  accepted = lubridate::ymd(\"2024-10-17\"),\n  days = accepted - received,\n  ymd = lubridate::as.period(lubridate::interval(received, accepted))\n)\n\ndf\n\n\n# A tibble: 1 × 4\n  received   accepted   days      ymd               \n  &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;    &lt;Period&gt;          \n1 2022-01-18 2024-10-17 1003 days 2y 8m 29d 0H 0M 0S\n几个点：\n这个表格仅罗列并一和通讯作者参与的论文部分。\n有两个问题：",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>造假的论文</span>"
+    ]
+  },
+  {
+    "objectID": "2026-06-01_misconduct-paper.html#同济的nature论文",
+    "href": "2026-06-01_misconduct-paper.html#同济的nature论文",
+    "title": "16  造假的论文",
+    "section": "",
+    "text": "免去王某生命科学与技术学院院长职务，降低专业技术岗位等级两级，取消其在岗位聘用、工资晋级、职务晋升、科研项目申报、评奖评优等资格24个月。解除金某某与学校高等研究院聘用关系。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n该文章2022-01-18日投稿，2024-10-17日接收，历时1033天（2年8个月29天）。可见经过了多少个压力巨大的日日夜夜。\n并列第一作者共四位，分别是：Jiali Jin（J.J.）、Tong Meng（T.M.）、Yuanyuan Yu（Y.Y.）、和Shuheng Wu（S.W.）。\n通讯作者仅是Ping Wang（P.W.）。\n\n\n\n\n\n\n\n\n\n\n\n\n\nExperiments\nJ.J.\nT.M.\nY.Y.\nS.W.\nP.W.\n\n\n\n\nDesign and conceived the studies\n+\n-\n-\n-\n+\n\n\nPerformed most of the experiments\n+\n+\n+\n+\n-\n\n\nPerformed the bioinformatics analysis\n-\n+\n+\n-\n-\n\n\nGenerated the PDX model\n+\n+\n-\n-\n-\n\n\nCarried out immunofluorescence analysis\n+\n+\n-\n-\n-\n\n\nContributed to animal assays\n+\n-\n-\n-\n-\n\n\nPerformed MS analyses\n+\n+\n-\n-\n-\n\n\nCarried out END-seq and S1-END-seq library preparation\n+\n-\n-\n-\n-\n\n\nPerformed WGBS, ACE-seq and MAB-seq library preparation\n+\n-\n-\n-\n-\n\n\nCarried out 5mC and 5hmC quantification by UPLC-MS/MS analysis\n+\n-\n-\n-\n-\n\n\nPerformed the isotope labelling experiment\n+\n-\n-\n-\n-\n\n\nAnalysed the data and wrote the manuscript\n+\n+\n+\n-\n+\n\n\n\n\n\nY.Y.和S.W.能满足并列第一作者的标准吗？\nT.M.也参与了若干实验，其是否清楚清楚或参与了J.J. scientific misconduct过程？",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>造假的论文</span>"
+    ]
+  },
+  {
+    "objectID": "2026-06-01_misconduct-paper.html#南开的nature-cancer论文",
+    "href": "2026-06-01_misconduct-paper.html#南开的nature-cancer论文",
+    "title": "16  造假的论文",
+    "section": "2. 南开的nature cancer论文",
+    "text": "2. 南开的nature cancer论文\n该文章情况通报的链接见https://news.tongji.edu.cn/info/1008/94355.htm。\n\n解除郑某与学校聘用关系。免去陈某生命科学学院院长职务，降低专业技术岗位等级，取消其在岗位聘用、工资晋级、职务晋升、科研项目申报、评奖评优等资格24个月。对胡某予以诫勉处理。\n\n\n\n\n\n\n\n\nCode\nlibrary(tibble)\nlibrary(lubridate)\nlibrary(dplyr)\n\ndf &lt;- tibble::tibble(\n  received = lubridate::ymd(\"2022-10-27\"),\n  accepted = lubridate::ymd(\"2023-12-14\"),\n  days = accepted - received,\n  ymd = lubridate::as.period(lubridate::interval(received, accepted))\n)\n\ndf\n\n\n# A tibble: 1 × 4\n  received   accepted   days     ymd               \n  &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;   &lt;Period&gt;          \n1 2022-10-27 2023-12-14 413 days 1y 1m 17d 0H 0M 0S\n\n\n几个点：\n\n该文章2022-10-27日投稿，2023-12-14日接收，历时413天（1年1个月17天）。可见经过了多少个压力巨大的日日夜夜。\n并列第一作者共四位，分别是：Hao Zheng（H.Z.）、Jinming Liu（J.L.）、和Qi Cheng（Q.C.）。\n通讯作者仅是Gang Hu（G.H.）、Lei Du（L.D.）、和Quan Chen（Q.Chen）。\n\n这个表格仅罗列并一和通讯作者参与的论文部分。\n\n\n\n\n\n\n\n\n\n\n\n\nExperiments\nH.Z.\nJ.L.\nQ.C.\nG.H.\nL.D.\nQ.Chen\n\n\n\n\nConceived and designed the project and supervised the research\n-\n-\n-\n-\n+\n+\n\n\nWrote the paper\n+\n-\n-\n-\n+\n+\n\n\nPerformed most of the experiments\n+\n+\n-\n-\n-\n-\n\n\nPerformed the bioinformatics analysis\n-\n-\n-\n+\n-\n-\n\n\nContributed to study design\n-\n-\n+\n-\n-\n-\n\n\n\n两个问题：\n\nQ.C.参与了研究设计，这就可以并列第一作者？\nJ.L.参与了大部分实验，其是否清楚清楚或参与了H.Z. scientific misconduct过程？\n\n给我买杯茶🍵",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>造假的论文</span>"
+    ]
   }
 ]

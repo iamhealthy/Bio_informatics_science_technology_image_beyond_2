@@ -54,6 +54,7 @@ book:
 
     - part: 其它
       chapters:
+        - 2026-06-01_misconduct-paper.qmd
         - 给我买杯茶.qmd
 
 bibliography: references.bib
