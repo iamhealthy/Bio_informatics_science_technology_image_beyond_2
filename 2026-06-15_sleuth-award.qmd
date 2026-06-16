@@ -1,0 +1,51 @@
+---
+title: 学术不端侦探奖
+subtitle: 知道的两例奖励
+date: 2026-06-15
+toc-depth: 4
+toc-expand: true
+lang: en 
+---
+
+
+:::{.callout-note icon="true"}
+只是偶尔留意到的。没有充分搜集和调研更多案例。
+:::
+
+## 奖励1：20万英镑
+
+![Bik in 2019。图源：<https://en.wikipedia.org/wiki/Elisabeth_Bik#cite_note-maddox21-9>。1996年毕业于荷兰Utrecht University微生物学博士。](images/Square_Headshot_Elisabeth_Bik.png){width="40%" fig-align="center"}
+
+她获得了the 2024 Einstein Foundation Award（时年58岁左右），奖金是20万英镑（折合人民币大概180万），目的是：
+
+> She will use the prize money of [€200,000]{.mark} to create a secure financial basis to continue her contested work.
+
+她得奖时的学术打假“成绩”：
+
+> As a science whistleblower, she has detected (a decade ago) and made public the use of fraudulent or erroneous data for [more than 7,600 scientific papers]{.mark}. This has led to over [1,100]{.mark} retracted papers. She has shed light on the practice of selling authorship for fabricated studies through so called ["paper mills"]{.mark} that generate counterfeit scientific articles.
+
+以上信息引自[@bik_einstein_fondation]。
+
+中国有类似的奖项吗？
+
+## 奖励2：263万美金
+
+![Sholto David。图源：<https://x.com/addictedtoigno1>。He is a British molecular biologist (2019年毕业于英格兰Newcastle University的细胞和分子生物学博士，) and blogger. He is known for identifying flaws in scientific papers.](images/david.jpg){width="40%" fig-align="center"}
+
+> Dana-Farber Cancer Institute has settled a lawsuit filed under the False Claims Act, admitting researchers used images and data that were “misrepresented and/or duplicated” in support of grant applications to the National Institutes of Health. Dana-Farber agreed to pay [$15 million]{.mark} to settle the claim.
+
+> Sleuth Sholto David filed the claim in April 2024.
+
+> As part of the agreement, [David will receive $2.63 million, or 17.5 percent of the settlement]{.mark}.
+
+> The False Claims Act allows plaintiffs to sue on behalf of the government. Judges can award whistleblowers up to 30 percent of the settlement...
+
+以上信息引自[@david_retraction]。
+
+263万美金约合[1760万人民币]{.mark}。
+
+希望中国如果也有类似**The False Claims Act**。或者科研打假人士也打假美国的机构，并起诉美国的机构，这样有动力些？
+
+[给我买杯茶🍵](给我买杯茶.qmd)
+
+## 参考文献

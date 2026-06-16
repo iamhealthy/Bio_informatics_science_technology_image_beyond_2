@@ -234,7 +234,7 @@
     "href": "2026-05-01_date-in-chinese.html#plot",
     "title": "7  Date in axis as Chinese",
     "section": "2. Plot",
-    "text": "2. Plot\n\ntidyplots |&gt; library()\n\n# View top 10 rows of columns used\nenergy_week |&gt; \n  dplyr::select(date, power, energy_source) |&gt; \n  dplyr::slice_head(n = 10)\n\n# A tibble: 10 × 3\n   date                 power energy_source              \n   &lt;dttm&gt;               &lt;dbl&gt; &lt;fct&gt;                      \n 1 2023-09-03 22:00:00    0   Nuclear                    \n 2 2023-09-03 22:00:00 2634.  Hydro Run-of-River         \n 3 2023-09-03 22:00:00 4711.  Biomass                    \n 4 2023-09-03 22:00:00 8399.  Fossil brown coal / lignite\n 5 2023-09-03 22:00:00 1726.  Fossil hard coal           \n 6 2023-09-03 22:00:00  401.  Fossil oil                 \n 7 2023-09-03 22:00:00 4900.  Fossil gas                 \n 8 2023-09-03 22:00:00   17.9 Geothermal                 \n 9 2023-09-03 22:00:00  232.  Hydro water reservoir      \n10 2023-09-03 22:00:00  586   Hydro pumped storage       \n\n\n可看出：date列是dttm（date-time）格式；power列是dbl（double）格式；energy_source是fct(factor)格式。\n\np1 &lt;- energy_week |&gt; \n  tidyplot(x = date, y = power, color = energy_source) |&gt; \n  add_title(title = \"p1: x axis labels in Chinese\") |&gt; \n  add_areastack_relative() |&gt; \n  adjust_size(width = 100)\n\np1\n\n\n\n\n\n\n\n\n能看出：x轴的labels含有“月”字。",
+    "text": "2. Plot\n\ntidyplots |&gt; library()\n\ntidyplots 0.4.0.9000\nIn publications, please cite: https://doi.org/10.1002/imt2.70018\n\n# View top 10 rows of columns used\nenergy_week |&gt; \n  dplyr::select(date, power, energy_source) |&gt; \n  dplyr::slice_head(n = 10)\n\n# A tibble: 10 × 3\n   date                 power energy_source              \n   &lt;dttm&gt;               &lt;dbl&gt; &lt;fct&gt;                      \n 1 2023-09-03 22:00:00    0   Nuclear                    \n 2 2023-09-03 22:00:00 2634.  Hydro Run-of-River         \n 3 2023-09-03 22:00:00 4711.  Biomass                    \n 4 2023-09-03 22:00:00 8399.  Fossil brown coal / lignite\n 5 2023-09-03 22:00:00 1726.  Fossil hard coal           \n 6 2023-09-03 22:00:00  401.  Fossil oil                 \n 7 2023-09-03 22:00:00 4900.  Fossil gas                 \n 8 2023-09-03 22:00:00   17.9 Geothermal                 \n 9 2023-09-03 22:00:00  232.  Hydro water reservoir      \n10 2023-09-03 22:00:00  586   Hydro pumped storage       \n\n\n可看出：date列是dttm（date-time）格式；power列是dbl（double）格式；energy_source是fct(factor)格式。\n\np1 &lt;- energy_week |&gt; \n  tidyplot(x = date, y = power, color = energy_source) |&gt; \n  add_title(title = \"p1: x axis labels in Chinese\") |&gt; \n  add_areastack_relative() |&gt; \n  adjust_size(width = 100)\n\np1\n\n\n\n\n\n\n\n\n能看出：x轴的labels含有“月”字。",
     "crumbs": [
       "R",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Date in axis as Chinese</span>"
@@ -256,7 +256,7 @@
     "href": "2026-05-06_ways-to-inset-images.html",
     "title": "8  Inset images",
     "section": "",
-    "text": "1. Generate a plot first\ntidyplots |&gt; library()\ntibble |&gt; library()\n\n# Generate a data frame\ndf &lt;- tibble::tibble(\n    x = seq(1, 10),\n    y = seq(1, 10)\n)\n\n# Plot\np &lt;- df |&gt; \n    tidyplot(x = x, y = y, paper = \"#dddddd\") |&gt; \n    add_title(title = \"p\") |&gt; \n    add_data_points() |&gt; \n    save_plot(\"images/2026-05-06_p.png\", view_plot = FALSE)\n\n✔ save_plot: saved to 'images/2026-05-06_p.png'",
+    "text": "1. Generate a plot first\ntidyplots |&gt; library()\n\ntidyplots 0.4.0.9000\nIn publications, please cite: https://doi.org/10.1002/imt2.70018\n\ntibble |&gt; library()\n\n# Generate a data frame\ndf &lt;- tibble::tibble(\n    x = seq(1, 10),\n    y = seq(1, 10)\n)\n\n# Plot\np &lt;- df |&gt; \n    tidyplot(x = x, y = y, paper = \"#dddddd\") |&gt; \n    add_title(title = \"p\") |&gt; \n    add_data_points() |&gt; \n    save_plot(\"images/2026-05-06_p.png\", view_plot = FALSE)\n\n✔ save_plot: saved to 'images/2026-05-06_p.png'",
     "crumbs": [
       "R",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Inset images</span>"
@@ -634,6 +634,50 @@
     "crumbs": [
       "其它",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>造假的论文</span>"
+    ]
+  },
+  {
+    "objectID": "2026-06-15_sleuth-award.html",
+    "href": "2026-06-15_sleuth-award.html",
+    "title": "17  学术不端侦探奖",
+    "section": "",
+    "text": "奖励1：20万英镑\n她获得了the 2024 Einstein Foundation Award（时年58岁左右），奖金是20万英镑（折合人民币大概180万），目的是：\n她得奖时的学术打假“成绩”：\n以上信息引自(1)。\n中国有类似的奖项吗？",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+    ]
+  },
+  {
+    "objectID": "2026-06-15_sleuth-award.html#奖励120万英镑",
+    "href": "2026-06-15_sleuth-award.html#奖励120万英镑",
+    "title": "17  学术不端侦探奖",
+    "section": "",
+    "text": "Bik in 2019。图源：https://en.wikipedia.org/wiki/Elisabeth_Bik#cite_note-maddox21-9。1996年毕业于荷兰Utrecht University微生物学博士。\n\n\n\n\nShe will use the prize money of €200,000 to create a secure financial basis to continue her contested work.\n\n\n\nAs a science whistleblower, she has detected (a decade ago) and made public the use of fraudulent or erroneous data for more than 7,600 scientific papers. This has led to over 1,100 retracted papers. She has shed light on the practice of selling authorship for fabricated studies through so called “paper mills” that generate counterfeit scientific articles.",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+    ]
+  },
+  {
+    "objectID": "2026-06-15_sleuth-award.html#奖励2263万美金",
+    "href": "2026-06-15_sleuth-award.html#奖励2263万美金",
+    "title": "17  学术不端侦探奖",
+    "section": "奖励2：263万美金",
+    "text": "奖励2：263万美金\n\n\n\nSholto David。图源：https://x.com/addictedtoigno1。He is a British molecular biologist (2019年毕业于英格兰Newcastle University的细胞和分子生物学博士，) and blogger. He is known for identifying flaws in scientific papers.\n\n\n\nDana-Farber Cancer Institute has settled a lawsuit filed under the False Claims Act, admitting researchers used images and data that were “misrepresented and/or duplicated” in support of grant applications to the National Institutes of Health. Dana-Farber agreed to pay $15 million to settle the claim.\n\n\nSleuth Sholto David filed the claim in April 2024.\n\n\nAs part of the agreement, David will receive $2.63 million, or 17.5 percent of the settlement.\n\n\nThe False Claims Act allows plaintiffs to sue on behalf of the government. Judges can award whistleblowers up to 30 percent of the settlement…\n\n以上信息引自(2)。\n263万美金约合1760万人民币。\n希望中国如果也有类似The False Claims Act。\n或者科研打假人士也打假美国的机构，并起诉美国的机构，这样有动力？\n给我买杯茶🍵",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+    ]
+  },
+  {
+    "objectID": "2026-06-15_sleuth-award.html#参考文献",
+    "href": "2026-06-15_sleuth-award.html#参考文献",
+    "title": "17  学术不端侦探奖",
+    "section": "参考文献",
+    "text": "参考文献\n\n\n\n\n1. Einstein foundation individual award winner 2024 (2024). https://award.einsteinfoundation.de/award-winners-finalists/recipients-2024/elisabeth-bik.\n\n\n2. R. watch staff (2025-12-16). https://retractionwatch.com/2025/12/16/dana-farber-settlement-false-claims-act-image-manipulation/.",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>学术不端侦探奖</span>"
     ]
   }
 ]
