@@ -26,6 +26,10 @@ lang: en
 
 以上信息引自[@bik_einstein_fondation]。
 
+P.S. Bik对Student Gen学术打假的评价：
+
+> What is “impressive” about Geng is his huge success in making these misconduct investigations happen, says Elisabeth Bik, a microbiologist and independent science-integrity researcher in San Francisco, California. Moreover, some of the investigations have already resulted in findings of misconduct — which, Bik says, happened unusually fast [@Xiaoying_NatureCell].
+
 中国有类似的奖项吗？
 
 ## 奖励2：263万美金
@@ -44,7 +48,7 @@ lang: en
 
 263万美金约合[1760万人民币]{.mark}。
 
-希望中国如果也有类似**The False Claims Act**。或者科研打假人士也打假美国的机构，并起诉美国的机构，这样有动力些？
+希望中国如果也有类似**The False Claims Act**。或者科研打假人士也打假美国的机构，并起诉美国的机构，这样有动力些？😁
 
 [给我买杯茶🍵](给我买杯茶.qmd)
 

@@ -1,0 +1,20 @@
+---
+title: QuPath viewer background
+subtitle: 改变viewer background颜色，以区分图片和viewer background颜色
+date: 2026-07-22
+toc-depth: 4
+toc-expand: true
+lang: en 
+---
+
+以这个图像为例，图像本身的背景为黑色，同时viewer背景色默认亦为黑色，因此无法明确图片的边缘。
+
+![Viewer background in default color (i.e. black).](images/2026-07-22_default-viewer-color.png){fig-align="center" width="100%"}
+
+在`Edit` &rarr; `Preferences...` &rarr; `Viewer` &rarr; `Viewer background color`改变颜色（比如改为灰色`#cccccc`），则可以明确图像的边缘。但viewer背景和scalebar的区分度不明显。
+
+![Viewer background in gray.](images/2026-07-22_default-viewer-color-1.png){fig-align="center" width="100%"}
+
+或者改变viewer背景色为绿色。同时viewer背景和scalebar的区分度也可以。
+
+![Viewer background in blue.](images/2026-07-22_default-viewer-color-2.png){fig-align="center" width="100%"}

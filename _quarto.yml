@@ -34,7 +34,8 @@ book:
 
     - part: QuPath
       chapters: 
-        - 2026-03-25_mrxs-to-ome.qmd      
+        - 2026-03-25_mrxs-to-ome.qmd
+        - 2026-07-22_qupath-viewer-background-color.qmd      
 
     - part: R & QuPath
       chapters:
