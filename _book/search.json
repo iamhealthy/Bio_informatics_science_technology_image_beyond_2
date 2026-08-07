@@ -395,300 +395,399 @@
     ]
   },
   {
+    "objectID": "2026-07-28_qupath-viewer-um-pt.html",
+    "href": "2026-07-28_qupath-viewer-um-pt.html",
+    "title": "13  Cursor location in px",
+    "section": "",
+    "text": "QuPath默认cursor location的坐标基准是µm（见下图右下角）。\n\n\n\nCursor location in µm.\n\n\n在Edit → Preferences，不要勾选Use calibrated location text。\n\n\n\nCursor location in px.\n\n\n另外，Location text font size可用于控制cursor location text的大小。本示例的Location text font size是Huge。\n\n\n\nLocation text font size.",
+    "crumbs": [
+      "QuPath",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Cursor location in px</span>"
+    ]
+  },
+  {
     "objectID": "2026-03-09_swan.html",
     "href": "2026-03-09_swan.html",
-    "title": "13  天鹅和倒影",
+    "title": "14  天鹅和倒影",
     "section": "",
     "text": "1. 在玛纳斯国家湿地公园拍到了天鹅",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>天鹅和倒影</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>天鹅和倒影</span>"
     ]
   },
   {
     "objectID": "2026-03-09_swan.html#在玛纳斯国家湿地公园拍到了天鹅",
     "href": "2026-03-09_swan.html#在玛纳斯国家湿地公园拍到了天鹅",
-    "title": "13  天鹅和倒影",
+    "title": "14  天鹅和倒影",
     "section": "",
     "text": "天鹅湖（拍摄于2026-02-17）",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>天鹅和倒影</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>天鹅和倒影</span>"
     ]
   },
   {
     "objectID": "2026-03-09_swan.html#玛纳斯国家湿地公园的位置",
     "href": "2026-03-09_swan.html#玛纳斯国家湿地公园的位置",
-    "title": "13  天鹅和倒影",
+    "title": "14  天鹅和倒影",
     "section": "2. 玛纳斯国家湿地公园的位置",
     "text": "2. 玛纳斯国家湿地公园的位置\n\nsf |&gt; library()\nggplot2 |&gt; library()\nggtext |&gt; library()\n\n# Read the shapefile of Xinjiang\nxinjiang &lt;- \"raw_data/新疆维吾尔自治区_市2.shp\" |&gt; \n    sf::read_sf()\n\n# Set the position of 新疆玛纳斯国家湿地公园\nwetland_park_location &lt;- data.frame(\n    x = 86.10,\n    y = 44.25,\n    z = \"新疆玛纳斯国家湿地公园\"\n)\n\nxinjiang |&gt; ggplot() +\n    geom_sf() +\n    geom_point(\n        data = wetland_park_location,\n        aes(x = x, y = y),\n        color = \"red\",\n        size = 2\n    ) +\n    labs(\n        x = \"经度/longitude\",\n        y = \"纬度/latitude\",\n        caption = \"坐标来源：\\nhttps://www.cj.gov.cn/p1/dfxfg/20170801/190939.html?source=zzb\",\n        title = \"**玛纳斯国家湿地公园**位于&lt;span style='color: red;'&gt;红点&lt;/span&gt;所示位置\"\n    ) +\n    theme_void() +\n    theme(\n        plot.title = ggtext::element_markdown()\n    )\n\n\n\n\n\n\n\n\"images/2026-03-10_wetland-position.png\" |&gt;\n    ggsave(bg = \"white\")",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>天鹅和倒影</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>天鹅和倒影</span>"
     ]
   },
   {
     "objectID": "2026-03-09_swan.html#给离镜头最近的天鹅来个特写",
     "href": "2026-03-09_swan.html#给离镜头最近的天鹅来个特写",
-    "title": "13  天鹅和倒影",
+    "title": "14  天鹅和倒影",
     "section": "3. 给离镜头最近的天鹅来个特写",
     "text": "3. 给离镜头最近的天鹅来个特写\nQuPath建立project → 添加图片 → 就该天鹅画一个矩形注释框 → 导出该矩形注释框的图片。\n\n\n倒影很有意思\n\n在QuPath → Classify → Pixel classification来选中天鹅和其倒影 → brush修补生成的annotation → 导出天鹅及其倒影。\n\n\n\n下面是groovy code：\n// QuPath v0.7.0\n\n/**\n * This exports the selected annotation and its ROI to ImageJ,\n * clears outside, and saves the output in a folder\n * called swan within your QuPath project.\n */\n\nimport ij.IJ\nimport qupath.lib.regions.RegionRequest\nimport qupath.imagej.tools.IJTools\n\ndef name = getCurrentImageNameWithoutExtension()\n\n// Create output folder\noutputPath = buildFilePath(PROJECT_BASE_DIR, \"swan\")\nmkdirs(outputPath)\n\ndef imageData = getCurrentImageData()\ndef server = imageData.getServer()\n\ndef downsample = 1 // if the image is large, it could be enlarged\ndef anno = getSelectedObject()\ndef roi = anno.getROI()\n\n// Request the region\ndef request = RegionRequest.createInstance(server.getPath(), downsample, roi)\n\n// Extract the region as an ImageJ ImagePlus\ndef imp = IJTools.convertToImagePlus(server, request).getImage()\n\n// Convert the QuPath ROI into an ImageJ\ndef ijRoi = IJTools.convertToIJRoi(roi, request)\nimp.setRoi(ijRoi)\nIJ.setBackgroundColor(255, 255, 255)\nIJ.run(imp, \"Clear Outside\", \"\")\n\ndef nameExportSwan = name + \"_swan\" + \".png\"\n\n// Export the image with IJ\npathExport = buildFilePath(outputPath, nameExportSwan)\nIJ.saveAs(imp, \"png\", pathExport)\n\nprintln \"Done! Image saved at: \" + outputPath\nGroovy代码参考自(1)并做小部分修改。\n给我买杯茶🍵",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>天鹅和倒影</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>天鹅和倒影</span>"
     ]
   },
   {
     "objectID": "2026-03-09_swan.html#references",
     "href": "2026-03-09_swan.html#references",
-    "title": "13  天鹅和倒影",
+    "title": "14  天鹅和倒影",
     "section": "References",
     "text": "References\n\n\n\n\n1. Isaac, Vieco-Martí, Issue exporting rotated rectangle ROI in QuPath - export includes bounding box instead of rotated shape (2025). https://forum.image.sc/t/issue-exporting-rotated-rectangle-roi-in-qupath-export-includes-bounding-box-instead-of-rotated-shape/117195/3.",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>天鹅和倒影</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>天鹅和倒影</span>"
     ]
   },
   {
     "objectID": "2026-03-14_qupath-release-history-and-size.html",
     "href": "2026-03-14_qupath-release-history-and-size.html",
-    "title": "14  QuPath-History-Size",
+    "title": "15  QuPath-History-Size",
     "section": "",
     "text": "除过v0.0.1-beta（属于Pre-release），其它的pre-release版本不统计。\n\ntidyplots |&gt; library() # for plotting\nggplot2 |&gt; library() # for plotting\nmagick |&gt; library() # for reading image\ngrid |&gt; library() # for changing image to graphic object\n\n# Collect relevant data from https://github.com/qupath\nqupath_history &lt;- data.frame(\n    Version = c(\n        \"v0.0.1-beta\", \"v0.1.0\", \"v0.1.1\", \"v0.1.2\", \"v0.2.0\", \"v0.2.1\", \"v0.2.2\", \"v0.2.3\", \"v0.3.0\", \"v0.3.1\", \"v0.3.2\", \"v0.4.0\", \"v0.4.1\", \"v0.4.2\", \"v0.4.3\", \"v0.4.4\", \"v0.5.0\", \"v0.5.1\", \"v0.6.0\", \"v0.7.0\"\n    ),\n    Release_date = as.Date(\n        c(\n            \"2016-10-05\", \"2016-12-05\", \"2016-12-08\", \"2017-01-01\", \"2020-06-01\", \"2020-06-23\", \"2020-07-28\", \"2020-09-11\", \"2021-09-03\", \"2021-12-24\", \"2022-01-17\", \"2022-12-03\", \"2022-12-21\", \"2023-01-20\", \"2023-02-23\", \"2023-09-02\", \"2023-12-02\", \"2024-03-04\", \"2025-06-27\", \"2026-03-02\"\n        )\n    ),\n    Installer_size = c(\n        73, 80.3, 80.3, 80.4, 199, 200, 199, 199, 205, 205, 207, 224, 224, 224, 224, 224, 234, 234, 267, 271\n    )\n)\n\n# Read the image of qupath\nqupath &lt;- \"images/qupath.png\" |&gt; \n    magick::image_read()\n\nqupath_grob &lt;- qupath |&gt; \n    grid::rasterGrob() # Change to graphic object\n\nqupath_history |&gt; tidyplot(x = Release_date, y = Installer_size, color = Installer_size) |&gt; \n    add(ggplot2::geom_line(size = 0.6)) |&gt;\n    add_data_points(size = 2, white_border = TRUE, shape = 18) |&gt; \n    add_data_labels_repel(label = Version, fontsize = 12, min.segment.length = 0) |&gt;\n    add_title(\"The release history and Windows installer size of QuPath\") |&gt; \n    add_caption(paste(\"Source: https://github.com/qupath (as of 2026-03-17).\", \"Exe size for v0.x.x; msi size for v0.2.x and beyond.\", sep = \"\\n\")) |&gt; \n    adjust_size(width = 150, height = 75, unit = \"mm\") |&gt; \n    adjust_font(fontsize = 10) |&gt; \n    adjust_y_axis(limits = c(50, 300), breaks = seq(50, 300, 50)) |&gt;\n    adjust_x_axis(breaks = \"1 year\", ) |&gt;\n    add(ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))) |&gt; \n    add(ggplot2::annotation_custom(qupath_grob, xmin = as.Date(\"2023-07-01\"), xmax = as.Date(\"2026-01-01\"), ymin = 60, ymax = 200)) |&gt; \n    adjust_x_axis_title(title = \"Release date\", fontsize = 14) |&gt; \n    adjust_y_axis_title(title = \"Installer size (Mb)\", fontsize = 14) |&gt;\n    adjust_colors(new_colors = colors_discrete_friendly) |&gt; \n    adjust_title(fontsize = 18, vjust = 3) |&gt; \n    adjust_caption(fontsize = 9) |&gt; \n    adjust_theme_details(plot.background = ggplot2::element_rect(fill = \"#f4f7d9\"), panel.background = ggplot2::element_rect(fill = \"#f4f7d9\")) |&gt;\n    adjust_legend_position(position = \"none\") |&gt; \n    save_plot(\"images/2026-03-14_qupath-release-history-and-size.png\", view_plot = FALSE)    \n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nv0.x.x统计的是.exe格式文件的大小；v0.2.x及之后版本统计的是.msi格式文件的大小。\n\n\n给我买杯茶🍵",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>QuPath-History-Size</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>QuPath-History-Size</span>"
     ]
   },
   {
     "objectID": "2026-03-23_qupath-snapshot.html",
     "href": "2026-03-23_qupath-snapshot.html",
-    "title": "15  导出QuPath快照",
+    "title": "16  导出QuPath快照",
     "section": "",
     "text": "1，通过QuPath菜单\nFile → Export snapshot...",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>导出QuPath快照</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>导出QuPath快照</span>"
     ]
   },
   {
     "objectID": "2026-03-23_qupath-snapshot.html#通过qupath菜单",
     "href": "2026-03-23_qupath-snapshot.html#通过qupath菜单",
-    "title": "15  导出QuPath快照",
+    "title": "16  导出QuPath快照",
     "section": "",
     "text": "→ Main window screenshot...\n\n\n\n\n\n\n→ Main window content...\n\n\n\n\n\n\n→ Current viewer content...",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>导出QuPath快照</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>导出QuPath快照</span>"
     ]
   },
   {
     "objectID": "2026-03-23_qupath-snapshot.html#通过extensions",
     "href": "2026-03-23_qupath-snapshot.html#通过extensions",
-    "title": "15  导出QuPath快照",
+    "title": "16  导出QuPath快照",
     "section": "2，通过Extensions",
     "text": "2，通过Extensions\nExtensions → Snapshot helper\n\n\n\n\n\n\n→ Save snapshot\n\n\n\n\n\n\n→ Save screenshot",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>导出QuPath快照</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>导出QuPath快照</span>"
     ]
   },
   {
     "objectID": "2026-03-23_qupath-snapshot.html#通过groovy-script",
     "href": "2026-03-23_qupath-snapshot.html#通过groovy-script",
-    "title": "15  导出QuPath快照",
+    "title": "16  导出QuPath快照",
     "section": "3，通过groovy script",
     "text": "3，通过groovy script\n\n\n\n\n\n\nFull screenshot\n\n\n\n\n\n\nSnapshot\n\n\n\n\n\n\nViewer snapshot\n\n\n\n\n\n// QuPath v0.7.0\n\nimport qupath.lib.gui.tools.GuiTools\n\n// Set directory\nvar path = buildFilePath(PROJECT_BASE_DIR, \"images\")\nmkdirs(path)\n\n// Export full screenshot\nvar name2 = \"full-screenshot.png\"\nwriteImage(\n        GuiTools.makeFullScreenshot(),\n        buildFilePath(path, name2)\n)\n\n// Export snapshot (main window content)\nvar name3 = \"snapshot.png\"\nwriteImage(\n        GuiTools.makeSnapshot(),\n        buildFilePath(path, name3)\n)\n\n// Export viewer snapshot\nvar name1 = \"viewer-snapshot.png\"\nwriteImage(\n        GuiTools.makeViewerSnapshot(),\n        buildFilePath(path, name1)\n)\n\nprintln \"Done!\"",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>导出QuPath快照</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>导出QuPath快照</span>"
     ]
   },
   {
     "objectID": "2026-03-23_qupath-snapshot.html#shift-s唤起windows自带的snipping-tool",
     "href": "2026-03-23_qupath-snapshot.html#shift-s唤起windows自带的snipping-tool",
-    "title": "15  导出QuPath快照",
+    "title": "16  导出QuPath快照",
     "section": "4，⊞ + shift + S唤起Windows自带的Snipping Tool",
     "text": "4，⊞ + shift + S唤起Windows自带的Snipping Tool\n通过Snipping Tool截取（QuPath）任意窗口区域。",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>导出QuPath快照</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>导出QuPath快照</span>"
     ]
   },
   {
     "objectID": "2026-03-23_qupath-snapshot.html#alt-space唤起utools",
     "href": "2026-03-23_qupath-snapshot.html#alt-space唤起utools",
-    "title": "15  导出QuPath快照",
+    "title": "16  导出QuPath快照",
     "section": "5，alt + space唤起uTools",
     "text": "5，alt + space唤起uTools\n需要提前安装uTools。\n唤起uTools后，在输入框输入jietu。三种工具都可以试试。\n\n\n\n\nuTools提供的3种截图工具。\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n方法1 - 3为QuPath特异的方法；方法4和5为泛泛的方法。\n\n\n给我买杯茶🍵",
     "crumbs": [
       "R & QuPath",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>导出QuPath快照</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>导出QuPath快照</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html",
     "href": "2026-03-04_切片染色方法.html",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "",
     "text": "1. IMC: imaging mass cytometry\n直接展示其原理图，不做过多描述。",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
     "href": "2026-03-04_切片染色方法.html#imc-imaging-mass-cytometry",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "",
     "text": "coupled immunohistochemical and immunocytochemical methods with high-resolution laser ablation to CyTOF mass cytometry (1).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
     "href": "2026-03-04_切片染色方法.html#codex-co-detection-by-indexing",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "2. CODEX: CO-Detection by indEXing",
     "text": "2. CODEX: CO-Detection by indEXing\n\nMultiplexed DNA-tagged antibody staining (2).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
     "href": "2026-03-04_切片染色方法.html#t-cycif-tissue-based-cyclic-immunofluorescence",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "3. t-CyCIF: tissue-based cyclic immunofluorescence",
     "text": "3. t-CyCIF: tissue-based cyclic immunofluorescence\n\nconventional low-plex fluorescence images are repeatedly collected from the same sample and then assembled into a high-dimensional representation (3).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
     "href": "2026-03-04_切片染色方法.html#i-iterative-indirect-immunofluorescence-imaging",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "4. 4i: iterative indirect immunofluorescence imaging",
     "text": "4. 4i: iterative indirect immunofluorescence imaging\n\n\n\n\n\nFrom (4)",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
     "href": "2026-03-04_切片染色方法.html#coda-quantitative-3d-reconstruction-of-large-tissues-at-cellular-resolution",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution",
     "text": "5. CODA: quantitative 3D reconstruction of large tissues at cellular resolution\n\nCODA maps whole organs and organisms at single-cell resolution (5), (6).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
     "href": "2026-03-04_切片染色方法.html#iclap-integrable-co-detection-of-low-abundant-proteins",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins",
     "text": "6. iCLAP: integrable Co-detection of Low-Abundant Proteins\n\nenables sensitive and highly multiplexed protein detection within the same FFPE tissue section (7).\n\n\n\n\n\n从panel a亦可知iCLAP-mxIF、CyCIF、IMC、和CODEX的大体检测通道数和敏感性定性比较。\n\n\n\n给我买杯茶🍵",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-03-04_切片染色方法.html#references",
     "href": "2026-03-04_切片染色方法.html#references",
-    "title": "16  切片染色方法",
+    "title": "17  切片染色方法",
     "section": "References",
     "text": "References\n\n\n\n\n1. C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry. Nature Methods 11, 417–422 (2014).\n\n\n2. Y. Goltsev, N. Samusik, J. Kennedy-Darling, S. Bhate, M. Hale, G. Vazquez, S. Black, G. P. Nolan, Deep profiling of mouse splenic architecture with CODEX multiplexed imaging. Cell 174, 968–981.e15 (2018).\n\n\n3. J.-R. Lin, B. Izar, S. Wang, C. Yapp, S. Mei, P. M. Shah, S. Santagata, P. K. Sorger, Highly multiplexed immunofluorescence imaging of human tissues and tumors using t-CyCIF and conventional optical microscopes. eLife 7 (2018).\n\n\n4. G. Gut, M. D. Herrmann, L. Pelkmans, Multiplexed protein maps link subcellular organization to cellular states. Science 361 (2018).\n\n\n5. A. L. Kiemen, A. M. Braxton, M. P. Grahn, K. S. Han, J. M. Babu, R. Reichel, A. C. Jiang, B. Kim, J. Hsu, F. Amoa, S. Reddy, S.-M. Hong, T. C. Cornish, E. D. Thompson, P. Huang, L. D. Wood, R. H. Hruban, D. Wirtz, P.-H. Wu, CODA: Quantitative 3D reconstruction of large tissues at cellular resolution. Nature Methods 19, 1490–1499 (2022).\n\n\n6. Denis, Wirtz (2026). https://bsky.app/profile/deniswirtz.bsky.social/post/3mg6kjndbx225.\n\n\n7. F. Wu, S. Zheng, Y. Chen, P. Ye, M. J. Kim, S. Lee, G. Kuo, S. Pillan, R. Yuan, K. S. Han, B. Yu, Q. Zhu, S. M. Shin, C. D. Cannon, G. Pierre, K. Iwasaki, C. Aguayo-Mazzucato, N. Musi, G. A. Kuchel, B. Schilling, L. D. Wood, W. J. Ho, R. A. Anders, D. Wirtz, P.-H. Wu, iCLAP: An innovative method for integrable co-detection of low-abundance antigens with high-plex immunostaining. Nature Communications, doi: 10.1038/s41467-026-69752-y (2026).",
     "crumbs": [
       "技术相关",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>切片染色方法</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>切片染色方法</span>"
     ]
   },
   {
     "objectID": "2026-06-01_misconduct-paper.html",
     "href": "2026-06-01_misconduct-paper.html",
-    "title": "17  造假的论文",
+    "title": "18  造假的论文",
     "section": "",
     "text": "1. 同济的nature论文\n该文章情况通报的链接见https://news.tongji.edu.cn/info/1008/94355.htm。\nCode\nlibrary(lubridate)\nlibrary(dplyr)\nlibrary(tibble)\n\ndf &lt;- tibble::tibble(\n  received = lubridate::ymd(\"2022-01-18\"),\n  accepted = lubridate::ymd(\"2024-10-17\"),\n  days = accepted - received,\n  ymd = lubridate::as.period(lubridate::interval(received, accepted))\n)\n\ndf\n\n\n# A tibble: 1 × 4\n  received   accepted   days      ymd               \n  &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;    &lt;Period&gt;          \n1 2022-01-18 2024-10-17 1003 days 2y 8m 29d 0H 0M 0S\n几个点：\n这个表格仅罗列并一和通讯作者参与的论文部分。\n有两个问题：",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>造假的论文</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>造假的论文</span>"
     ]
   },
   {
     "objectID": "2026-06-01_misconduct-paper.html#同济的nature论文",
     "href": "2026-06-01_misconduct-paper.html#同济的nature论文",
-    "title": "17  造假的论文",
+    "title": "18  造假的论文",
     "section": "",
     "text": "免去王某生命科学与技术学院院长职务，降低专业技术岗位等级两级，取消其在岗位聘用、工资晋级、职务晋升、科研项目申报、评奖评优等资格24个月。解除金某某与学校高等研究院聘用关系。\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n该文章2022-01-18日投稿，2024-10-17日接收，历时1033天（2年8个月29天）。可见经过了多少个压力巨大的日日夜夜。\n并列第一作者共四位，分别是：Jiali Jin（J.J.）、Tong Meng（T.M.）、Yuanyuan Yu（Y.Y.）、和Shuheng Wu（S.W.）。\n通讯作者仅是Ping Wang（P.W.）。\n\n\n\n\n\n\n\n\n\n\n\n\n\nExperiments\nJ.J.\nT.M.\nY.Y.\nS.W.\nP.W.\n\n\n\n\nDesign and conceived the studies\n+\n-\n-\n-\n+\n\n\nPerformed most of the experiments\n+\n+\n+\n+\n-\n\n\nPerformed the bioinformatics analysis\n-\n+\n+\n-\n-\n\n\nGenerated the PDX model\n+\n+\n-\n-\n-\n\n\nCarried out immunofluorescence analysis\n+\n+\n-\n-\n-\n\n\nContributed to animal assays\n+\n-\n-\n-\n-\n\n\nPerformed MS analyses\n+\n+\n-\n-\n-\n\n\nCarried out END-seq and S1-END-seq library preparation\n+\n-\n-\n-\n-\n\n\nPerformed WGBS, ACE-seq and MAB-seq library preparation\n+\n-\n-\n-\n-\n\n\nCarried out 5mC and 5hmC quantification by UPLC-MS/MS analysis\n+\n-\n-\n-\n-\n\n\nPerformed the isotope labelling experiment\n+\n-\n-\n-\n-\n\n\nAnalysed the data and wrote the manuscript\n+\n+\n+\n-\n+\n\n\n\n\n\nY.Y.和S.W.能满足并列第一作者的标准吗？\nT.M.也参与了若干实验，其是否清楚清楚或参与了J.J. scientific misconduct过程？",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>造假的论文</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>造假的论文</span>"
     ]
   },
   {
     "objectID": "2026-06-01_misconduct-paper.html#南开的nature-cancer论文",
     "href": "2026-06-01_misconduct-paper.html#南开的nature-cancer论文",
-    "title": "17  造假的论文",
+    "title": "18  造假的论文",
     "section": "2. 南开的nature cancer论文",
     "text": "2. 南开的nature cancer论文\n该文章情况通报的链接见https://news.tongji.edu.cn/info/1008/94355.htm。\n\n解除郑某与学校聘用关系。免去陈某生命科学学院院长职务，降低专业技术岗位等级，取消其在岗位聘用、工资晋级、职务晋升、科研项目申报、评奖评优等资格24个月。对胡某予以诫勉处理。\n\n\n\n\n\n\n\n\nCode\nlibrary(tibble)\nlibrary(lubridate)\nlibrary(dplyr)\n\ndf &lt;- tibble::tibble(\n  received = lubridate::ymd(\"2022-10-27\"),\n  accepted = lubridate::ymd(\"2023-12-14\"),\n  days = accepted - received,\n  ymd = lubridate::as.period(lubridate::interval(received, accepted))\n)\n\ndf\n\n\n# A tibble: 1 × 4\n  received   accepted   days     ymd               \n  &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;   &lt;Period&gt;          \n1 2022-10-27 2023-12-14 413 days 1y 1m 17d 0H 0M 0S\n\n\n几个点：\n\n该文章2022-10-27日投稿，2023-12-14日接收，历时413天（1年1个月17天）。可见经过了多少个压力巨大的日日夜夜。\n并列第一作者共四位，分别是：Hao Zheng（H.Z.）、Jinming Liu（J.L.）、和Qi Cheng（Q.C.）。\n通讯作者仅是Gang Hu（G.H.）、Lei Du（L.D.）、和Quan Chen（Q.Chen）。\n\n这个表格仅罗列并一和通讯作者参与的论文部分。\n\n\n\n\n\n\n\n\n\n\n\n\nExperiments\nH.Z.\nJ.L.\nQ.C.\nG.H.\nL.D.\nQ.Chen\n\n\n\n\nConceived and designed the project and supervised the research\n-\n-\n-\n-\n+\n+\n\n\nWrote the paper\n+\n-\n-\n-\n+\n+\n\n\nPerformed most of the experiments\n+\n+\n-\n-\n-\n-\n\n\nPerformed the bioinformatics analysis\n-\n-\n-\n+\n-\n-\n\n\nContributed to study design\n-\n-\n+\n-\n-\n-\n\n\n\n两个问题：\n\nQ.C.参与了研究设计，这就可以并列第一作者？\nJ.L.参与了大部分实验，其是否清楚清楚或参与了H.Z. scientific misconduct过程？\n\n给我买杯茶🍵",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>造假的论文</span>"
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>造假的论文</span>"
     ]
   },
   {
     "objectID": "2026-06-15_sleuth-award.html",
     "href": "2026-06-15_sleuth-award.html",
-    "title": "18  学术不端侦探奖",
+    "title": "19  学术不端侦探奖",
     "section": "",
     "text": "奖励1：20万英镑\n她获得了the 2024 Einstein Foundation Award（时年58岁左右），奖金是20万英镑（折合人民币大概180万），目的是：\n她得奖时的学术打假“成绩”：\n以上信息引自(1)。\nP.S. Bik对Student Gen学术打假的评价：\n中国有类似的奖项吗？",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>学术不端侦探奖</span>"
     ]
   },
   {
     "objectID": "2026-06-15_sleuth-award.html#奖励120万英镑",
     "href": "2026-06-15_sleuth-award.html#奖励120万英镑",
-    "title": "18  学术不端侦探奖",
+    "title": "19  学术不端侦探奖",
     "section": "",
     "text": "Bik in 2019。图源：https://en.wikipedia.org/wiki/Elisabeth_Bik#cite_note-maddox21-9。1996年毕业于荷兰Utrecht University微生物学博士。\n\n\n\n\nShe will use the prize money of €200,000 to create a secure financial basis to continue her contested work.\n\n\n\nAs a science whistleblower, she has detected (a decade ago) and made public the use of fraudulent or erroneous data for more than 7,600 scientific papers. This has led to over 1,100 retracted papers. She has shed light on the practice of selling authorship for fabricated studies through so called “paper mills” that generate counterfeit scientific articles.\n\n\n\n\nWhat is “impressive” about Geng is his huge success in making these misconduct investigations happen, says Elisabeth Bik, a microbiologist and independent science-integrity researcher in San Francisco, California. Moreover, some of the investigations have already resulted in findings of misconduct — which, Bik says, happened unusually fast (2).",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>学术不端侦探奖</span>"
     ]
   },
   {
     "objectID": "2026-06-15_sleuth-award.html#奖励2263万美金",
     "href": "2026-06-15_sleuth-award.html#奖励2263万美金",
-    "title": "18  学术不端侦探奖",
+    "title": "19  学术不端侦探奖",
     "section": "奖励2：263万美金",
     "text": "奖励2：263万美金\n\n\n\nSholto David。图源：https://x.com/addictedtoigno1。He is a British molecular biologist (2019年毕业于英格兰Newcastle University的细胞和分子生物学博士，) and blogger. He is known for identifying flaws in scientific papers.\n\n\n\nDana-Farber Cancer Institute has settled a lawsuit filed under the False Claims Act, admitting researchers used images and data that were “misrepresented and/or duplicated” in support of grant applications to the National Institutes of Health. Dana-Farber agreed to pay $15 million to settle the claim.\n\n\nSleuth Sholto David filed the claim in April 2024.\n\n\nAs part of the agreement, David will receive $2.63 million, or 17.5 percent of the settlement.\n\n\nThe False Claims Act allows plaintiffs to sue on behalf of the government. Judges can award whistleblowers up to 30 percent of the settlement…\n\n以上信息引自(3)。\n263万美金约合1760万人民币。\n希望中国如果也有类似The False Claims Act。或者科研打假人士也打假美国的机构，并起诉美国的机构，这样有动力些？😁\n给我买杯茶🍵",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>学术不端侦探奖</span>"
     ]
   },
   {
     "objectID": "2026-06-15_sleuth-award.html#参考文献",
     "href": "2026-06-15_sleuth-award.html#参考文献",
-    "title": "18  学术不端侦探奖",
+    "title": "19  学术不端侦探奖",
     "section": "参考文献",
     "text": "参考文献\n\n\n\n\n1. Einstein foundation individual award winner 2024 (2024). https://award.einsteinfoundation.de/award-winners-finalists/recipients-2024/elisabeth-bik.\n\n\n2. X. You, “Student geng” ignites research-integrity scandal in china after calling out senior academics (2026-06-12). https://www.nature.com/articles/d41586-026-01902-0.\n\n\n3. R. watch staff (2025-12-16). https://retractionwatch.com/2025/12/16/dana-farber-settlement-false-claims-act-image-manipulation/.",
     "crumbs": [
       "其它",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>学术不端侦探奖</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html",
+    "href": "2026-07-29_zilong-qiu-nature.html",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "",
+    "text": "1. 投稿历史\n这个文章(1)投稿于2024-12-21日，接收于2026-01-08。\nCode\ndf &lt;- tibble::tibble(\n    received = lubridate::ymd(\"2024-12-21\"),\n    accepted = lubridate::ymd(\"2026-01-08\"),\n    days = accepted - received,\n    ymd = lubridate::as.period(lubridate::interval(received, accepted))\n)\n\ndf\n\n\n# A tibble: 1 × 4\n  received   accepted   days     ymd               \n  &lt;date&gt;     &lt;date&gt;     &lt;drtn&gt;   &lt;Period&gt;          \n1 2024-12-21 2026-01-08 383 days 1y 0m 18d 0H 0M 0S\n几个点：",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#投稿历史",
+    "href": "2026-07-29_zilong-qiu-nature.html#投稿历史",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "",
+    "text": "该文章投稿于2024-12-21，接收于2026-01-08，历时383天（能发Nature，这个时间周期还好）。\n并列第一作者（tagged with 13）共6位；共同通讯作者（tagged with ✉️）共4位。Kan Yang既是并列第一作者，也是共同通讯作者。\n并列第一单位共9个，对应的医院或大学/学院分别是：交大附属新华医院、交大附属松江医院、湖南工程学院、复旦大学附属儿科医院、交大基础医学院、山东大学附属齐鲁医院、云南大学医学院、中科院生化所、和上海理工大学生命科学与技术学院。\n共同通讯单位共4个，对应的医院或大学/学院分别是：交大附属新华医院、交大附属松江医院、湖南工程学院、和复旦大学附属儿科医院。",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#aav病毒在哪里生产的",
+    "href": "2026-07-29_zilong-qiu-nature.html#aav病毒在哪里生产的",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "2. AAV病毒在哪里生产的？",
+    "text": "2. AAV病毒在哪里生产的？\nAAV质粒的设计和构建应该是在课题组实验室构建，之后病毒的包装和滴度测定由PackGene Bioscience（广州派真生物）完成(2)。\n\nThe packaging of AAV viruses and titration were performed by PackGene Bioscience (3).\n\n\n\n\n\n\n用于“小美”的AAV病毒是在哪里生产的？\n\na Chinese affiliate of a U.S.-based firm that would start to make the viruses.\n\n派真生物在美国的公司位于德克萨斯州休斯顿（不是说临床级AAV是在派真生物做的）。",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#science报道science_aav_girl里面关于付款给个人账户的相关描述",
+    "href": "2026-07-29_zilong-qiu-nature.html#science报道science_aav_girl里面关于付款给个人账户的相关描述",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "3. Science报道(3)里面关于付款给个人账户的相关描述",
+    "text": "3. Science报道(3)里面关于付款给个人账户的相关描述\n\nfunded in part by $860,000 the parents had scraped together (凑钱) from their own savings and from relatives.\n\n\nMore of their money … flowed to a Chinese affiliate of a U.S.-based firm that would start to make the viruses, and to PriMed, a contract research organization in Sichuan province that would run the monkey studies.\n\n\nQiu also asked the couple to pay other members of the research team directly, through informal arrangements (非正式安排)\n\n\nIn April 2024, at a Starbucks café near the university, Jason met with Kang Yang, the researcher overseeing the lab work and a co-inventor in Qiu’s Rett Syndrome (雷特综合征) patent, to discuss a fee schedule.\n\n\n… charging for an unproven therapy is forbidden under Chinese law. The informed consent noted that “Participation in this study will not incur any additional costs (产生任何额外费用) to you. All expenses will be borne by the sponsor (由赞助商承担), Lanqi Xintu Gene Technology.”\n\n\nThe family ultimately sent $130,000 directly to Yang’s personal account over the course of the project, according to bank records.\n\n\nJason always picked up the tab (支付账单) and gave Qiu multiple iPhones, an iPad, and a case of Maotai, a Chinese liquor made of sorghum (高粱) and wheat, according to family records.\n\n\nYang returned the full payment he received for the work (after Mei’s death).\n\n\nThey submitted a complaint (at some time in 2026) to the dean of Qiu’s university, demanding an investigation and a retraction of the Nature paper “to prevent more children from suffering and our blood and tears flowing in vain.”\n\n\nOn 30 April (2026), Jason and Linda received an emailed reply from the university, followed by a phone call: The dean’s office was taking no action against Qiu. The payments made to Yang were simply “research services fees” (研究服务费) for the clinical trial, though he was given a formal admonitory talk (正式警告谈话) for his behavior.",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#science报道science_aav_girl里面关于zilong-qiu的描述",
+    "href": "2026-07-29_zilong-qiu-nature.html#science报道science_aav_girl里面关于zilong-qiu的描述",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "4. Science报道(3)里面关于Zilong Qiu的描述",
+    "text": "4. Science报道(3)里面关于Zilong Qiu的描述\n\nHis (Qiu) gene therapy for Rett syndrome had recently been patented in China, and he founded a company, Lanqi Xintu Gene Technology …\n\n\nQiu also asked the couple to pay other members of the research team directly, through informal arrangements\n\n\nJason always picked up the tab and gave Qiu multiple iPhones, an iPad, and a case of Maotai, a Chinese liquor made of sorghum and wheat, according to family records.\n\n\nHe was second only to Liu, he told the family, when it came to taking it (i.e. base editing) to new frontiers.\n\n\nAfter 3 days, Mei developed a fever … Qiu swung by (顺便拜访) as her fever began to wane (消退) … He assured Jason and Linda that their daughter’s condition would soon improve. As they walked him to the elevator, he announced—excitedly—that the Nature paper had been accepted with revisions. Then he added that Mei’s treatment would make an even bigger splash (引人注目的效果): the first brain-directed gene-editing therapy.\n\n\nOver the next 24 hours … Qiu, who had returned upon hearing of Mei’s problems, seemed unable to process it. … Mei had died. Qiu was in shock …\n\n\nOver the next few weeks, Linda and Jason say Qiu expressed his sadness to the family, but he was unwilling to speculate (推测) on what went wrong.\n\n\nThe parents say they asked him to withdraw (撤回) the Nature paper out of concern that it could mislead other families with a similarly affected child, as well as researchers. Qiu initially agreed. Eventually, they say, he stopped responding to their queries.\n\n\nAlthough Qiu’s company had taken out insurance (购买保险) for the trial, the family said they were offered no compensation (赔偿金).",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#小美的死因",
+    "href": "2026-07-29_zilong-qiu-nature.html#小美的死因",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "5. 小美的死因",
+    "text": "5. 小美的死因\n\nAfter 3 days, Mei developed a fever.\n\n\nMei did not improve.\n\n\nDoctors took Mei for a full-body CT scan and then rushed her to the intensive care unit.\n\n\nThe cause of death: thrombotic microangiopathy（血栓性微血管病变）.",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#aav专利的专利权人是谁",
+    "href": "2026-07-29_zilong-qiu-nature.html#aav专利的专利权人是谁",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "6. AAV专利的专利权人是谁？",
+    "text": "6. AAV专利的专利权人是谁？\n这个Nature文章的主要单位见第1部分描述。\n这个专利(4)的专利权人则是中国科学院脑科学与智能技术卓越创新中心，发明人是Zilong Qiu和Kan Yang；申请日期是2022-02-25。\n说明两位研究人员那时候及其之前的时间可能是在那里工作吧。Nature文章其实没有体现中国科学院脑科学与智能技术卓越创新中心这个单位。",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
+    ]
+  },
+  {
+    "objectID": "2026-07-29_zilong-qiu-nature.html#references",
+    "href": "2026-07-29_zilong-qiu-nature.html#references",
+    "title": "20  Zilong Qiu‘s nature paper",
+    "section": "References",
+    "text": "References\n\n\n\n\n1. K. Yang, W.-K. Li, Y.-X. Geng, S.-Q. Zhang, S.-H. Wu, Y.-B. Cheng, J.-W. Wang, Z.-K. Xu, W.-X. Wang, T.-Y. Zhang, P.-Y. Wang, Y.-T. Yuan, J. Fan, J. Wu, R.-C. Xu, Y.-F. Zhang, G.-J. Tao, Z.-H. Li, C.-X. Lin, T.-S. Li, X.-Y. Zhang, J. Li, R. Zhang, W.-X. Yang, J.-S. Wen, Z.-Y. Yang, L. Gong, W. Zeng, A.-L. Du, J.-S. Li, F. Li, T.-L. Cheng, Z. Qiu, In vivo base editing of Chd3 rescues behavioural abnormalities in mice. Nature 651, 785–795 (2026).\n\n\n2. PackGene, In vivo base editing of Chd3 rescues behavioural abnormalities in mice. https://www.packgene.cn/citation/in-vivo-base-editing-of-chd3-rescues-behavioural-abnormalities-in-mice/.\n\n\n3. B. Borrell, Retraction_watch, A fatal reaction (2026-07-23). https://www.science.org/content/article/exclusive-death-girl-chinese-gene-editing-trial-was-never-made-public.\n\n\n4. Method for introducing gene into brain based on adeno-associated virus. https://patentscope2.wipo.int/search/en/detail.jsf?docId=CN407798995&_cid=P12-MPW5TG-10166-1.",
+    "crumbs": [
+      "其它",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Zilong Qiu‘s nature paper</span>"
     ]
   }
 ]

@@ -1,0 +1,20 @@
+---
+title: Cursor location in px
+subtitle: Change cursor location in µm to in pixel (px)
+date: 2026-07-28
+toc-depth: 4
+toc-expand: true
+lang: en 
+---
+
+QuPath默认cursor location的坐标基准是µm（见下图右下角）。
+
+![Cursor location in µm.](images/2026-07-28_cursor-location-px.png){fig-align="center" width="100%"}
+
+在`Edit` &rarr; `Preferences`，不要勾选`Use calibrated location text`。
+
+![Cursor location in px.](images/2026-07-28_cursor-location-px-1.png)
+
+另外，`Location text font size`可用于控制cursor location text的大小。本示例的`Location text font size`是`Huge`。
+
+![Location text font size.](images/2026-07-28_cursor-location-px-2.png)

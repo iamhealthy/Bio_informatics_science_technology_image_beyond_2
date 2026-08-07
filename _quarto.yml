@@ -35,7 +35,8 @@ book:
     - part: QuPath
       chapters: 
         - 2026-03-25_mrxs-to-ome.qmd
-        - 2026-07-22_qupath-viewer-background-color.qmd      
+        - 2026-07-22_qupath-viewer-background-color.qmd
+        - 2026-07-28_qupath-viewer-um-pt.qmd      
 
     - part: R & QuPath
       chapters:
@@ -57,6 +58,7 @@ book:
       chapters:
         - 2026-06-01_misconduct-paper.qmd
         - 2026-06-15_sleuth-award.qmd
+        - 2026-07-29_zilong-qiu-nature.qmd
         - 给我买杯茶.qmd
 
 bibliography: references.bib

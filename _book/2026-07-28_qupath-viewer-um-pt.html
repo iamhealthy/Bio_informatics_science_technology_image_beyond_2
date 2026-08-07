@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-07-28">
 
-<title>给我买杯茶 – 【生物】信息、科技、和图像分析（2）</title>
+<title>13&nbsp; Cursor location in px – 【生物】信息、科技、和图像分析（2）</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,7 +34,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./2026-07-29_zilong-qiu-nature.html" rel="prev">
+<link href="./2026-03-09_swan.html" rel="next">
+<link href="./2026-07-22_qupath-viewer-background-color.html" rel="prev">
 <link href="./images/2026-03-10_swan-inverted-reflection.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -251,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2026-06-01_misconduct-paper.html">其它</a></li><li class="breadcrumb-item"><a href="./给我买杯茶.html">给我买杯茶</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2026-03-25_mrxs-to-ome.html">QuPath</a></li><li class="breadcrumb-item"><a href="./2026-07-28_qupath-viewer-um-pt.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cursor location in px</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -379,7 +381,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2026-07-28_qupath-viewer-um-pt.html" class="sidebar-item-text sidebar-link">
+  <a href="./2026-07-28_qupath-viewer-um-pt.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cursor location in px</span></span></a>
   </div>
 </li>
@@ -472,7 +474,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./给我买杯茶.html" class="sidebar-item-text sidebar-link active">
+  <a href="./给我买杯茶.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">给我买杯茶</span></a>
   </div>
 </li>
@@ -490,9 +492,10 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2026-06-01_misconduct-paper.html">其它</a></li><li class="breadcrumb-item"><a href="./给我买杯茶.html">给我买杯茶</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2026-03-25_mrxs-to-ome.html">QuPath</a></li><li class="breadcrumb-item"><a href="./2026-07-28_qupath-viewer-um-pt.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cursor location in px</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">给我买杯茶</h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cursor location in px</span></h1>
+<p class="subtitle lead">Change cursor location in µm to in pixel (px)</p>
 </div>
 
 
@@ -500,6 +503,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 28, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -509,9 +518,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<center>
-<img src="alipay.jpg" class="img-fluid" style="width:80.0%">
-</center>
+<p>QuPath默认cursor location的坐标基准是µm（见下图右下角）。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2026-07-28_cursor-location-px.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Cursor location in µm.</figcaption>
+</figure>
+</div>
+<p>在<code>Edit</code> → <code>Preferences</code>，不要勾选<code>Use calibrated location text</code>。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2026-07-28_cursor-location-px-1.png" class="img-fluid figure-img"></p>
+<figcaption>Cursor location in px.</figcaption>
+</figure>
+</div>
+<p>另外，<code>Location text font size</code>可用于控制cursor location text的大小。本示例的<code>Location text font size</code>是<code>Huge</code>。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/2026-07-28_cursor-location-px-2.png" class="img-fluid figure-img"></p>
+<figcaption>Location text font size.</figcaption>
+</figure>
+</div>
 
 
 
@@ -931,11 +958,14 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./2026-07-29_zilong-qiu-nature.html" class="pagination-link" aria-label="Zilong Qiu‘s nature paper">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Zilong Qiu‘s nature paper</span></span>
+      <a href="./2026-07-22_qupath-viewer-background-color.html" class="pagination-link" aria-label="QuPath viewer background">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">QuPath viewer background</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./2026-03-09_swan.html" class="pagination-link" aria-label="天鹅和倒影">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">天鹅和倒影</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
